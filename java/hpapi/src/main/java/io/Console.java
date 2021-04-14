@@ -16,7 +16,6 @@ public class Console {
 
     public static void log(Object ...os){
 
-
         for (int i = 0; i < os.length; i++) {
             System.out.print(os[i]);
             if(i < os.length-1){

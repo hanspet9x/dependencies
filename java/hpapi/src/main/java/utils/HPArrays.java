@@ -1,6 +1,6 @@
 package utils;
 
-public class Arrays {
+public class HPArrays {
 
     public static String toString(Object ...objects){
         String data = java.util.Arrays.toString(objects);

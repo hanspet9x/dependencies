@@ -1,5 +1,7 @@
 package io;
 
+import utils.HPArrays;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,7 +32,7 @@ public class CSV<T> implements CSVDownloadImpl {
     @Override
     public void addHeaders(String... headers) {
         CSV.headers.addAll(Arrays.asList(headers));
-        addRows(utils.Arrays.toString(headers));
+        addRows(HPArrays.toString(headers));
     }
 
     @Override
