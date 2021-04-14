@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="tbscrm_models:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/tbscrm_models_jar</output-path>
+    <root id="archive" name="tbscrm_models.jar">
+      <element id="module-output" name="tbscrm_models" />
+    </root>
+  </artifact>
+</component>
