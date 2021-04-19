@@ -2,8 +2,6 @@ package io;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Terminal {
 
@@ -27,7 +25,17 @@ public class Terminal {
         return getExecuted("ping "+ hostName);
     }
 
-    public static void deleteFile(Path filePath) throws IOException {
-        execute("del /f "+filePath.toString());
+    public static void delete(String ...commandLine) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        for (String s : commandLine) {
+            sb.append(s);
+            sb.append(" ");
+        }
+        String data = "cmd /c del /f /q "+ sb.toString();
+        execute(data);
+    }
+
+    public static void deleteFile(String filePath) throws IOException {
+        execute("cmd /c del /f /q "+filePath);
     }
 }

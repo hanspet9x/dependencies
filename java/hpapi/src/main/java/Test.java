@@ -1,9 +1,8 @@
 import io.Terminal;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class Test {
 
@@ -11,6 +10,7 @@ public class Test {
 
         CompletableFuture<String> completableFuture = new CompletableFuture<>();
         completableFuture.completeAsync(() -> {
+
             /*try {
                 Thread.sleep(1000);
                 return "Ade";
@@ -18,6 +18,7 @@ public class Test {
                 e.printStackTrace();
                 return "Tola";
             }*/
+
             return "Tola";
         });
         return completableFuture;
@@ -25,7 +26,6 @@ public class Test {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println(Terminal.execute("assoc"));
-
+        Terminal.delete("C:\\Users\\payod\\OneDrive\\Documents\\books\\tola", "*.txt");
     }
 }
