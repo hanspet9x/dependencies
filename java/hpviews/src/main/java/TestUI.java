@@ -459,12 +459,12 @@ public class TestUI extends JFrame{
 //        testUI.testExplorer();
 //        testUI.testCenterComponent();
 //        testUI.testScrollPane();
-        testUI.testImageViewer();
+//        testUI.testImageViewer();
 //        testUI.testPDFViewer();
 //        testUI.testOverflowView();
 //        testUI.testSelectView();
 //        testUI.testUIWindow();
-//        testUI.testUIDialog();
+        testUI.testUIDialog();
 //        testUI.testUIScroller();
 //        testUI.testImageColor();
 //        ImageView im = testUI.testImageView();

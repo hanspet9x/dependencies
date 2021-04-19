@@ -26,6 +26,6 @@ public class Test {
 
 
     public static void main(String[] args) throws IOException {
-        Terminal.delete("C:\\Users\\payod\\OneDrive\\Documents\\books\\tola", "*.txt");
+        Terminal.deleteFolder("C:\\Users\\payod\\OneDrive\\Documents\\books\\tola");
     }
 }

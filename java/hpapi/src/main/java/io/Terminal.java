@@ -35,6 +35,11 @@ public class Terminal {
         execute(data);
     }
 
+    public static void deleteFolder(String path) throws IOException {
+        String data = "cmd /c rmdir /q /s "+path;
+        execute(data);
+    }
+
     public static void deleteFile(String filePath) throws IOException {
         execute("cmd /c del /f /q "+filePath);
     }
