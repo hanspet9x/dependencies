@@ -1,0 +1,45 @@
+<html>
+    <body>
+        
+            <textarea id="textarea"></textarea>
+            <input id="input" />
+            <button id="submit">send</button>
+        
+        <script type="text/javascript">
+            let socket = null;
+            
+            function _(x){
+                return document.getElementById(x);
+            }
+
+            _("submit").onSubmit = (evt)=>{
+           
+                if(socket === null){
+                    socket = new WebSocket("wss://localhost:3000");
+                    
+                    socket.onopen = ()=>{
+                        console.log("opened");
+                        socket.send({type: "open", msg: "hello"});
+                    };
+
+                    socket.onclose = ()=> {
+                        console.error("closed.");
+                    }
+
+                    socket.onerror = ()=> {
+                        console.error("error.");
+                    }
+
+                    socket.onmessage = (evt) => {
+                        console.log(evt, evt.data);
+                        _("text").innerHTML(evt.data);
+                    }
+
+                }
+
+                socket.send({type: "data", msg: _("input").value});
+                
+            }
+        </script>
+    </body>
+</html>
