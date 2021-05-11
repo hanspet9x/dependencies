@@ -195,6 +195,7 @@ public class TbsMini {
     public String getGeneDsn(){
         return dbPrefix+"GENE_17";
     }
+
     public String getCurrentDsn(){
         return dbPrefix+"01"+ currentFiscalYear +"_17";
     }

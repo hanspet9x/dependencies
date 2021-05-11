@@ -5,32 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="889284a9-9fe1-46c0-a163-a831686c6e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/hpapi.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sajdbc4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interfaces/OnTbsMiniError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbsio/TBSConnect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbsmini/TbsMini.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/.idea/artifacts/edms_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/out/artifacts/edms_jar/edms.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/out/artifacts/edms_jar/edms2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/src/main/java/services/AdvancedSearchCategoryRefreshService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/src/main/java/services/AdvancedSearchCategoryRefreshService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/src/main/java/services/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/src/main/java/services/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/src/main/java/views/AuthLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/src/main/java/views/AuthLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/AdvancedSearchCategoryRefreshService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/AdvancedSearchCategoryRefreshService$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/AdvancedSearchCategoryRefreshService$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/AdvancedSearchCategoryRefreshService$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/AdvancedSearchCategoryRefreshService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/AdvancedSearchCategoryRefreshService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/Utils$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/Utils$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/target/classes/services/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../edms/bswsc/target/classes/views/AuthLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../edms/bswsc/target/classes/views/AuthLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/src/main/java/net/Mailer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Delete.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Insert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Select.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Update.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi1_1_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/libraries/gson_2_8_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/libraries/json_20190722.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/http/HttpFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/net/HttpFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/target/classes/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$Form.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$Header.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$HttpResponses.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$OnServerResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$UrlBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tbs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tbs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbsmini/TbsMini.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbsmini/TbsMini.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/socket/java/out/production/socket/Socker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../test/socket/java/out/production/socket/Socker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/socket/java/src/Socker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/socket/java/src/Socker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +44,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1pZCHzWmP9sUb7DJtaqapDN7JMj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -61,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sajdbc4.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />

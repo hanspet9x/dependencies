@@ -1,10 +1,26 @@
-import io.Terminal;
+import io.Console;
+import net.HttpFactory;
+import net.Mailer;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.concurrent.CompletableFuture;
 
 public class Test {
+
+    static void post(){
+
+        HttpFactory.Form form = new HttpFactory.Form();
+        Iterable<byte[]> b = form.add("name", "ade").build();
+
+        HttpFactory.setOnServerResponse(new HttpFactory.OnServerResponse() {
+                                            @Override
+                                            public void response(String data) {
+                                                Console.log(data);
+                                            }
+                                        });
+                HttpFactory.postForm("http://localhost:8080/test", b, HttpFactory.HttpResponses.TEXT);
+    }
 
     static CompletableFuture<String> testCompletable(){
 
@@ -25,7 +41,15 @@ public class Test {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        Terminal.deleteFolder("C:\\Users\\payod\\OneDrive\\Documents\\books\\tola");
+    public static void main(String[] args) throws IOException, MessagingException {
+//        String [] address = {"payodeji7@gmail.com", "peterakinlolu1@gmail.com"};
+//        String address1 = "payodeji7@gmail.com";
+//        Mailer mailer = new Mailer("tawoltechnologies@gmail.com", address, "Testing", "hello there");
+//        String username = "test@hanspet.com";
+//        String password = "theyoungshallgrow";
+//        mailer.testMail(username, password);
+        new Thread(Test::post).start();
+       //mailer.sendMessage(username, password);
+        //mailer.sendAttachment(username, password, new File("C:\\Users\\payod\\OneDrive\\Pictures\\git\\init.PNG"));
     }
 }

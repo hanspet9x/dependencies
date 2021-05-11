@@ -3,12 +3,12 @@ import java.awt.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Socker extends JFrame {
 
     Socket socket = null;
+
      void view(){
 
         JTextArea textArea = new JTextArea();
@@ -17,7 +17,7 @@ public class Socker extends JFrame {
         JButton startSocket = new JButton("Start Socket");
         startSocket.addActionListener( event -> {
             try {
-                socket = new Socket("localhost", 3000);
+                socket = new Socket("localhost", 3001);
                 new Thread(()->{
                     while(socket.isConnected()){
                         try {
@@ -61,6 +61,8 @@ public class Socker extends JFrame {
         add(startSocket, BorderLayout.PAGE_START);
         add(panel, BorderLayout.PAGE_END);
     }
+
+
     public static void main(String[] args) {
          Socker sock = new Socker();
          sock.view();
