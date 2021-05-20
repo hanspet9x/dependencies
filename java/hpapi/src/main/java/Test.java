@@ -1,6 +1,5 @@
-import io.Console;
-import net.HttpFactory;
-import net.Mailer;
+import hp.io.Console;
+import hp.net.HttpFactory;
 
 import javax.mail.MessagingException;
 import java.io.IOException;

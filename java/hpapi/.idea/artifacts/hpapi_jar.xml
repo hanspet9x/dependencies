@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="hpapi:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/hpapi_jar</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/hpapi2_jar</output-path>
     <root id="archive" name="hpapi.jar">
       <element id="module-output" name="hpapi" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/pdfbox/fontbox/2.0.22/fontbox-2.0.22.jar" path-in-jar="/" />

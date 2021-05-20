@@ -17,15 +17,16 @@ public class Socker extends JFrame {
         JButton startSocket = new JButton("Start Socket");
         startSocket.addActionListener( event -> {
             try {
-                socket = new Socket("localhost", 3001);
+                socket = new Socket("localhost", 8080);
                 new Thread(()->{
                     while(socket.isConnected()){
+//                        System.out.println("sss");
                         try {
                             DataInputStream dis = new DataInputStream(socket.getInputStream());
                             if(dis.available() > 0){
-                                byte[] b = new byte[dis.available()];
-                                dis.readFully(b);
-                                String msg = new String(b);
+//                                byte[] b = new byte[dis.available()];
+//                                dis.readFully(b);
+                                String msg = new String(dis.readAllBytes());
                                 System.out.println(msg+"yes");
                                 textArea.setText(msg);
                                 textArea.setText("\n");

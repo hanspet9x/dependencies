@@ -1,32 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="tbs:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="889284a9-9fe1-46c0-a163-a831686c6e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../hpapi/src/main/java/net/Mailer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Delete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Insert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Select.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sql/Update.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi1_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/libraries/gson_2_8_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/libraries/json_20190722.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/out/artifacts/hpapi2_jar/hpapi.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/CSV.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/CSVDownloadImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/CSVUploadImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/Console.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS$DirectoryWalker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS$WalkerType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/Terminal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$Form.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$Header.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$HttpResponses.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$OnServerResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$UrlBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/Mailer$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/Mailer$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/Mailer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/utils/HPArrays.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/tbs_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sql/HPSQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/io/TBSTables.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Arparm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/BoreholeLicenseTarrifs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/ComplaintCodes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Complaints.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/ComplaintsFileMovement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerEnumeration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerEnumerations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerServiceAreas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerStreets.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerZones.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Enumeration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/HrMaster.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Learn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/MeteredWaterTarrifs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Msg.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Schemes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/SewerageTarrifs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/SubZones.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Tbscrm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/UnmeteredWaterTarrifs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Variables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/http/HttpFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/net/HttpFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/CSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/CSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/CSVDownloadImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/CSVDownloadImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/CSVUploadImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/CSVUploadImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/FS.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/FS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/Terminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/Terminal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/net/HttpFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/net/HttpFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/net/Mailer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/net/Mailer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/utils/HPArrays.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/utils/HPArrays.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/Test$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/target/classes/Test$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/target/classes/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$Form.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$Header.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$HttpResponses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$OnServerResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory$UrlBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/http/HttpFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/CSV.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/CSVDownloadImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/CSVUploadImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/Console.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS$DirectoryWalker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS$WalkerType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/Terminal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$Form.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$Header.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$HttpResponses.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$OnServerResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$UrlBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/Mailer$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/Mailer$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/Mailer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/utils/HPArrays.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/hpapi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/hpapi.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sajdbc4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sajdbc4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tbsmini/TbsMini.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbsmini/TbsMini.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sql/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sql/Insert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sql/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sql/Select.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sql/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sql/Update.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbsio/TBSConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/io/TBSConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbsmini/TbsMini.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/mini/TbsMini.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbsio/TBSConnect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbsmini/TbsMini.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/socket/java/out/production/socket/Socker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../test/socket/java/out/production/socket/Socker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test/socket/java/src/Socker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/socket/java/src/Socker.java" afterDir="false" />
     </list>
@@ -34,6 +113,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -46,6 +128,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/tbs/io/TBSTables.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/sql/Update.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/tbs/models/CustomerZones.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/sql/Insert.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/tbs/io/TBSConnect.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Test.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1pZCHzWmP9sUb7DJtaqapDN7JMj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -55,14 +145,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../3rdparty/sajdbc4.jar" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunManager">
@@ -101,5 +193,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../../.." />
+    </ignored-roots>
   </component>
 </project>
