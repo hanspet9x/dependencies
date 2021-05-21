@@ -9,10 +9,7 @@ public class CustomerZones implements Serializable {
     private String shortName;
     private String agency;
 
-
-    public CustomerZones() {
-
-    }
+    public CustomerZones() {}
 
     public int getCode() {
         return code;

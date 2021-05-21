@@ -4,22 +4,12 @@ import java.io.Serializable;
 
 public class CustomerCategory implements Serializable {
 
-    private int id;
     private int code;
     private String description;
     private String customerType;
     private String agency;
 
-    public CustomerCategory() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public CustomerCategory() {}
 
     public String getAgency() {
         return agency;

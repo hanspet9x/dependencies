@@ -4,22 +4,12 @@ import java.io.Serializable;
 
 public class CustomerTypes implements Serializable {
 
-    private int id;
     private int code;
     private String description;
     private String agency;
 
 
     public CustomerTypes() {
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAgency() {

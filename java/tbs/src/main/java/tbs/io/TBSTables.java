@@ -5,8 +5,8 @@ import sql.HPSQL;
 import sql.Insert;
 import sql.Select;
 import tbs.mini.TbsMini;
+import tbs.models.*;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,22 +16,24 @@ import java.util.Map;
 public class TBSTables {
     private Connection con = null;
     private String dsn, pDsn;
-    private final HPSQL hpsql;
-    private final TbsMini mini;
+    private HPSQL hpsql;
+    private TbsMini mini;
     private String agencyName;
 
     public TBSTables(String dsn) {
-        this.hpsql = new HPSQL();
-        mini = new TbsMini();
         this.dsn = this.pDsn = dsn;
-        agencyName = mini.getAgencyName();
+        common();
     }
 
     public TBSTables() {
+        common();
+        this.dsn = this.pDsn = mini.getCurrentDsn();
+    }
+
+    private void common(){
         this.hpsql = new HPSQL();
         mini = new TbsMini();
-        this.dsn = this.pDsn = mini.getCurrentDsn();
-        agencyName = mini.getAgencyName();
+        agencyName = mini.getAgencyName().toLowerCase();
     }
 
     private void useGENE(){
@@ -44,7 +46,7 @@ public class TBSTables {
     }
 
 
-    public int addCustomer(Object bean) throws IOException, SQLException {
+    public int addCustomer(Object bean) throws  SQLException {
 
         return new Insert()
                 .setBean(bean)
@@ -62,21 +64,91 @@ public class TBSTables {
                 .prepareBean(getConnection());
     }
 
+    public <T> List<T> getCustomerComplaints(Class<T> bean, Map<String, Object> where) throws SQLException {
+        return new Select()
+                .setTableName("customer_complaints")
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .setWhere(where)
+                .setExclude("agency")
+                .setIncludes(Map.of("agency", agencyName))
+                .resultSetObjISQL(getConnection(), bean);
+    }
 
-    public <T> List<T> getComplaintsFileMovement(Class<T> bean, String agency) throws SQLException {
+    public <T> List<T> getCustomerCategories(Class<T> bean) throws SQLException {
+        return getTableData(bean, "customer_category");
+    }
+
+    public <T> List<T> getCustomerTypes(Class<T> bean) throws SQLException {
+        return getTableData(bean, "customer_types");
+    }
+
+    public CustomerConstants getCustomerConstants() throws SQLException {
+        List<ComplaintCodes> complaintCodes = getTableData(ComplaintCodes.class);
+        List<CustomerCategory> categories = getTableData(CustomerCategory.class);
+        List<CustomerTypes> types = getTableData(CustomerTypes.class);
+        List<CustomerServiceAreas> serviceAreas = getTableData(CustomerServiceAreas.class);
+        List<SubZones> subZones = getTableData(SubZones.class, "customer_cc");
+        List<CustomerStreets> streets = getTableData(CustomerStreets.class);
+        List<CustomerSubacctCategories> subacctCategories = getTableData(CustomerSubacctCategories.class);
+
+        return new CustomerConstants(complaintCodes, categories, types, serviceAreas, subZones, streets, subacctCategories);
+    }
+
+    public String getCustomerConstantsJson() throws SQLException {
+        return objToJson(getCustomerConstants());
+    }
+    public Tariffs getTariffs() throws SQLException {
+        List<BoreholeLicenseTarrifs> boreholeLicenseTariffs = getTableData(BoreholeLicenseTarrifs.class);
+        List<MeteredWaterTarrifs> meteredWaterTarrifs = getTableData(MeteredWaterTarrifs.class);
+        List<UnmeteredWaterTarrifs> unmeteredWaterTarrifs = getTableData(UnmeteredWaterTarrifs.class);
+        List<SewerageTarrifs> sewerageTarrifs = getTableData(SewerageTarrifs.class);
+
+        return new Tariffs(boreholeLicenseTariffs, sewerageTarrifs, meteredWaterTarrifs, unmeteredWaterTarrifs);
+
+    }
+
+    public String getTariffsJson() throws SQLException {
+        return objToJson(getTariffs());
+    }
+
+    public <T> List <T> getEmployees(Class<T> bean, Map<String, Object> where) throws SQLException {
+        return new Select()
+                .setTableName("hr_master")
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .setWhere(where)
+                .resultSetObjISQL(getConnection(), bean);
+    }
+
+    public <T> List <T> getEmployees(Class<T> bean) throws SQLException {
+        return new Select()
+                .setTableName("hr_master")
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .resultSetObjISQL(getConnection(), bean);
+    }
+
+    public <T> String getEmployeesJson(Class<T> bean, Map<String, Object> where) throws SQLException {
+        return objToJson(getEmployees(bean, where));
+    }
+
+    public <T> String getEmployeesJson(Class<T> bean) throws SQLException {
+        return objToJson(getEmployees(bean));
+    }
+
+    public <T> List<T> getComplaintsFileMovement(Class<T> bean, Map<String, Object> where) throws SQLException {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
                 .setExclude("agency")
-                .setIncludes(Map.of("agency", agency))
+                .setWhere(where)
+                .setIncludes(Map.of("agency", agencyName))
                 .resultSetObjISQL(getConnection(), bean);
     }
 
-    public <T> String getComplaintsFileMovementJson(Class<T> bean, String agency) throws SQLException {
-        return objToJson(getComplaintsFileMovement(bean, agency));
+    public <T> String getComplaintsFileMovementJson(Class<T> bean, Map<String, Object> where) throws SQLException {
+        return objToJson(getComplaintsFileMovement(bean, where));
     }
 
-    public <T> List<T> getZonalCustomers(Class<T> bean, String zone, Map<String, Object> includes) throws IOException, SQLException {
+    public <T> List<T> getZonalCustomers(Class<T> bean, String zone, Map<String, Object> includes) throws  SQLException {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
@@ -88,7 +160,7 @@ public class TBSTables {
 
     }
 
-    public <T> String getZonalCustomersJson(Class<T> bean, String zone, Map<String, Object> includes) throws IOException, SQLException {
+    public <T> String getZonalCustomersJson(Class<T> bean, String zone, Map<String, Object> includes) throws  SQLException {
         return objToJson(getZonalCustomers(bean, zone, includes));
     }
 
@@ -108,32 +180,23 @@ public class TBSTables {
 
     public <T> List<T> getUsers(Class<T> bean) throws SQLException {
         useGENE();
-        return new Select()
-                .setTableName("users")
-                .setColumns(hpsql.getColumnFromClass(bean))
-                .setIncludes(Map.of("agency",agencyName.toLowerCase()))
-                .setExclude("agency")
-                .resultSetObjISQL(getConnection(), bean);
+        return getTableData(bean, "users");
     }
 
     public <T> String getUsersJson(Class<T> bean) throws SQLException {
         return objToJson(getUsers(bean));
     }
 
-    public <T> List<T> getArparm(Class<T> bean, String agency) throws SQLException {
-        return new Select()
-                .setTableName("arparm")
-                .setColumns(hpsql.getColumnFromClass(bean))
-                .setExclude("agency")
-                .setIncludes(Map.of("agency", agency))
-                .resultSetObjISQL(getConnection(), bean);
+    public <T> List<T> getArparm(Class<T> bean) throws SQLException {
+        useMain();
+        return getTableData(bean, "arparm");
     }
 
-    public <T> String getArparmJson(Class<T> bean, String agency) throws SQLException {
-        return objToJson(getArparm(bean, agency));
+    public <T> String getArparmJson(Class<T> bean) throws SQLException {
+        return objToJson(getArparm(bean));
     }
 
-    public <T> List<T> getCustomers(Class<T> bean) throws IOException, SQLException {
+    public <T> List<T> getCustomers(Class<T> bean) throws  SQLException {
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
                 .setExclude("id", "seen", "agency")
@@ -144,14 +207,14 @@ public class TBSTables {
     /*
     Schemes
      */
-    public List<Object[]> getSchemes(String [] columns) throws IOException, SQLException {
+    public List<Object[]> getSchemes(String [] columns) throws  SQLException {
         return getTable(columns, "schemes");
     }
 
     /*
     Enumeration
      */
-    public int addCustomerEnumeration(Object bean) throws IOException, SQLException {
+    public int addCustomerEnumeration(Object bean) throws SQLException {
 
         return new Insert()
                 .setBean(bean)
@@ -160,7 +223,7 @@ public class TBSTables {
 
     }
 
-    public <T> List<T> getZonalCustomersEnumeration(Class<T> bean, Object zone) throws IOException, SQLException {
+    public <T> List<T> getZonalCustomersEnumeration(Class<T> bean, Object zone) throws SQLException {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
@@ -170,7 +233,85 @@ public class TBSTables {
 
     }
 
-    public <T> List<T> getTableData(Class<T> bean, String tableName, String [] excludes) throws IOException, SQLException {
+    public int addTableData(Object bean, String tableName) throws SQLException {
+        return new Insert()
+                .setTableName(tableName)
+                .setBean(bean)
+                .setExcludes("agency", "id", "seen", "code")
+                .prepareBean(getConnection());
+    }
+
+    public int addTableData(Object bean) throws SQLException {
+        return new Insert()
+                .setTableName(hpsql.getTableNameFromBean(bean))
+                .setBean(bean)
+                .setExcludes("agency", "id", "seen", "code")
+                .prepareBean(getConnection());
+    }
+
+    public <T> List<T> getTableData(Class<T> bean) throws SQLException {
+
+        return new Select()
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .setTableName(hpsql.getTableNameFromBean(bean))
+                .setExclude("agency", "id")
+                .setIncludes(Map.of("agency", agencyName))
+                .resultSetObjISQL(getConnection(), bean);
+    }
+
+    public <T> List<T> getTableData(Class<T> bean, Map<String, Object> where) throws SQLException {
+
+        return new Select()
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .setTableName(hpsql.getTableNameFromBean(bean))
+                .setWhere(where)
+                .setExclude("agency", "id")
+                .setIncludes(Map.of("agency", agencyName))
+                .resultSetObjISQL(getConnection(), bean);
+    }
+
+    public <T> List<T> getTableData(Class<T> bean, String tableName) throws SQLException {
+
+        return new Select()
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .setTableName(tableName)
+                .setExclude("agency", "id")
+                .setIncludes(Map.of("agency", agencyName))
+                .resultSetObjISQL(getConnection(), bean);
+    }
+
+    public <T> List<T> getTableData(Class<T> bean, String tableName,  Map<String, Object> where) throws SQLException {
+
+        return new Select()
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .setTableName(tableName)
+                .setWhere(where)
+                .setExclude("agency", "id")
+                .setIncludes(Map.of("agency", agencyName))
+                .resultSetObjISQL(getConnection(), bean);
+    }
+
+    public <T> String getTableDataJson(Class<T> bean) throws SQLException {
+
+        return objToJson(getTableData(bean));
+    }
+
+    public <T> String getTableDataJson(Class<T> bean, String tableName) throws SQLException {
+
+        return objToJson(getTableData(bean, tableName));
+    }
+
+    public <T> String getTableDataJson(Class<T> bean, Map<String, Object> where) throws SQLException {
+
+        return objToJson(getTableData(bean, where));
+    }
+
+    public <T> String getTableDataJson(Class<T> bean, String tableName, Map<String, Object> where) throws SQLException {
+
+        return objToJson(getTableData(bean, tableName, where));
+    }
+
+    public <T> List<T> getTableData(Class<T> bean, String tableName, String [] excludes) throws  SQLException {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
@@ -179,7 +320,7 @@ public class TBSTables {
                 .resultSetObjISQL(getConnection(), bean);
     }
 
-    public <T> List<T> getTableData(Class<T> bean, String tableName, String [] excludes, Map<String, Object> include) throws IOException, SQLException {
+    public <T> List<T> getTableData(Class<T> bean, String tableName, Map<String, Object> include, String [] excludes) throws  SQLException {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
@@ -189,7 +330,7 @@ public class TBSTables {
                 .resultSetObjISQL(getConnection(), bean);
     }
 
-    public <T> List<T> getTableData(Class<T> bean, String [] excludes, Map<String, Object> include) throws IOException, SQLException {
+    public <T> List<T> getTableData(Class<T> bean, Map<String, Object> include, String [] excludes) throws  SQLException {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
@@ -199,7 +340,7 @@ public class TBSTables {
                 .resultSetObjISQL(getConnection(), bean);
     }
 
-    private List<Object[]> getTable(String [] columns, String table) throws IOException, SQLException {
+    private List<Object[]> getTable(String [] columns, String table) throws  SQLException {
 
         return new Select()
                 .setColumns(columns)
@@ -207,7 +348,7 @@ public class TBSTables {
                 .resultSetISQL(getConnection());
     }
 
-    private List<Object[]> getTable(String [] columns, String table, int limit) throws IOException, SQLException {
+    private List<Object[]> getTable(String [] columns, String table, int limit) throws  SQLException {
 
         return new Select()
                 .setColumns(columns)
@@ -216,7 +357,7 @@ public class TBSTables {
                 .resultSetISQL(getConnection());
     }
 
-    public void updateCustomerSno() throws IOException, SQLException {
+    public void updateCustomerSno() throws  SQLException {
         String sql = "SELECT custno FROM customers";
         Connection con = getConnection();
         ResultSet rs = con.createStatement().executeQuery(sql);
@@ -237,7 +378,11 @@ public class TBSTables {
         return con;
     }
 
-    private <T> String objToJson(List<T> T){
+    public  <T> String objToJson(List<T> T){
         return new Gson().toJson(T);
+    }
+
+    public  <T> String objToJson(T bean){
+        return new Gson().toJson(bean);
     }
 }

@@ -1,7 +1,5 @@
 package sql;
 
-import hp.io.Console;
-
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -33,8 +31,15 @@ public class Select extends HPSQL{
         return this;
     }
 
-    public Select setChangeColumn(Map<String, String> columns){
-        changeColumns = columns;
+    /**
+     * It accepts a Map of snaked bean property and a corresponding table column name.
+     * E.g If bean property is userLog but tableColumn is userlog, parameters should be,
+     * user_log and userlog.
+     * @param snakedNameColumnName String
+     * @return Select
+     */
+    public Select setChangeColumn(Map<String, String> snakedNameColumnName){
+        changeColumns = snakedNameColumnName;
         return this;
     }
 
@@ -99,11 +104,9 @@ public class Select extends HPSQL{
     }
 
     private String[] processColumnsChange(String [] snakedColumns){
-        Console.log("proc");
         if (changeColumns == null) return snakedColumns;
         return Arrays.stream(snakedColumns)
                 .map(column -> {
-                    Console.log(column);
                     if(changeColumns.containsKey(column)){
                         return changeColumns.get(column);
                     }
@@ -156,7 +159,6 @@ public class Select extends HPSQL{
             sb.append(parseOrder(order));
             sb.append(" ");
         }
-        Console.log(sb.toString());
         return sb.toString();
     }
 
@@ -281,7 +283,6 @@ public class Select extends HPSQL{
     private <T> void insertConstantColumnValue(T beanObj) {
         if(includes != null){
             includes.forEach((column, value) -> {
-//                    System.out.println(column+"--"+value);
                 try {
                     beanObj.getClass().getDeclaredMethod(getSetters(column),
                             beanObj.getClass().getDeclaredField(column).getType())

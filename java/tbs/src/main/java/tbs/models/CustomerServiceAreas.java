@@ -3,21 +3,22 @@ package tbs.models;
 import java.io.Serializable;
 
 public class CustomerServiceAreas implements Serializable {
-	private int id;
 	private String description;
 	private String shortName;
 	private String agency;
-	
+	private int code;
 	public CustomerServiceAreas() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public int getId() {
-		return id;
+
+	public int getCode() {
+		return code;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setCode(int code) {
+		this.code = code;
 	}
+
 	public String getDescription() {
 		return description;
 	}

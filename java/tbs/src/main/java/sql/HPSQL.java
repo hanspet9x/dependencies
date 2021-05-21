@@ -20,12 +20,6 @@ import java.util.regex.Pattern;
  */
 public class HPSQL {
 
-    public void test(JSONObject jsonObject, Map<String, String> mp){
-
-//        String data = where(jsonObject);
-
-       // System.out.println(camelCaseColumn(jsonObject));
-    }
 
     public String getBeanName(Object bean){
         String className = bean.getClass().getName();
@@ -38,6 +32,10 @@ public class HPSQL {
     }
 
     public String getTableNameFromBean(Class<?> bean){
+        return fromCamelCase(getBeanName(bean));
+    }
+
+    public String getTableNameFromBean(Object bean){
         return fromCamelCase(getBeanName(bean));
     }
 

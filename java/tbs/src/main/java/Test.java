@@ -35,6 +35,10 @@ public class Test {
     void connectTable() throws SQLException, IOException {
         TBSTables tb = new TBSTables("BSW012021_17");
 //        Console.log(tb.getArparmJson(Arparm.class, "bswsc"));
+
+//        Console.log(tb.getTariffsJson());
+//        Console.log(tb.getTableDataJson(Schemes.class));
+        Console.log(tb.getCustomerConstantsJson());
 //        Console.log(tb.getZonalCustomersJson(Customer.class, "birshi", Map.of("agency", "bswsc")));
 
     }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SubZones implements Serializable {
 
-    private int id;
+
     private int code;
     private String description;
     private String zone;
@@ -13,14 +13,6 @@ public class SubZones implements Serializable {
 
     public SubZones() {
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getCode() {

@@ -3,7 +3,7 @@ package tbs.models;
 import java.io.Serializable;
 
 public class UnmeteredWaterTarrifs implements Serializable {
-    private int id;
+
     private String itemCode;
     private String itemDesc;
     private double unitPrice;
@@ -13,14 +13,6 @@ public class UnmeteredWaterTarrifs implements Serializable {
     private String agency;
 
     public UnmeteredWaterTarrifs() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getAgency() {

@@ -4,23 +4,33 @@ import java.io.Serializable;
 
 public class Schemes implements Serializable {
 
-	private int id;
 	private int sno;
 	private String description;
 	private String code;
 	private String agency;
-	
+	private float longitude;
+	private float latitude;
+
+
 	public Schemes() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getId() {
-		return id;
+	public float getLongitude() {
+		return longitude;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
+	}
+
+	public float getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
 	}
 
 	public String getCode() {

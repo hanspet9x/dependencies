@@ -10,104 +10,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="889284a9-9fe1-46c0-a163-a831686c6e31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../hpapi/out/artifacts/hpapi2_jar/hpapi.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/CSV.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/CSVDownloadImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/CSVUploadImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/Console.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS$DirectoryWalker.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS$WalkerType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/FS.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/io/Terminal.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$Form.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$Header.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$HttpResponses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$OnServerResponse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory$UrlBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/HttpFactory.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/Mailer$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/Mailer$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/net/Mailer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../hpapi/target/classes/hp/utils/HPArrays.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/tbs_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sql/HPSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/io/TBSTables.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Arparm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/BoreholeLicenseTarrifs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/ComplaintCodes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Complaints.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/ComplaintsFileMovement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerEnumeration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerEnumerations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerServiceAreas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerStreets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerZones.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Enumeration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/HrMaster.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Learn" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/MeteredWaterTarrifs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Msg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Schemes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/SewerageTarrifs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/SubZones.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Tbscrm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/UnmeteredWaterTarrifs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Users.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Variables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/.idea/artifacts/hpapi_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/CSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/CSV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/CSVDownloadImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/CSVDownloadImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/CSVUploadImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/CSVUploadImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/FS.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/FS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/io/Terminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/io/Terminal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/net/HttpFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/net/HttpFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/net/Mailer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/net/Mailer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/src/main/java/utils/HPArrays.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/src/main/java/hp/utils/HPArrays.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/Test$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/target/classes/Test$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/../hpapi/target/classes/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/CSV.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/CSVDownloadImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/CSVUploadImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/Console.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS$DirectoryWalker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS$WalkerType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/FS.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/io/Terminal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$Form.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$Header.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$HttpResponses.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$OnServerResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory$UrlBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/HttpFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/Mailer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/Mailer$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/net/Mailer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../hpapi/target/classes/utils/HPArrays.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/hpapi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/hpapi.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sajdbc4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/sajdbc4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerSubacctCategories.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Tariffs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/tbs_jar/tbs.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/tbs_jar/tbs.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sql/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sql/Insert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sql/HPSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sql/HPSQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sql/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sql/Select.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sql/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sql/Update.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tbsio/TBSConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/io/TBSConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tbsmini/TbsMini.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/mini/TbsMini.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/io/TBSTables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/io/TBSTables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/BoreholeLicenseTarrifs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/BoreholeLicenseTarrifs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerServiceAreas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerServiceAreas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerStreets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerStreets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerZones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/CustomerZones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/MeteredWaterTarrifs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/MeteredWaterTarrifs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/Schemes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/Schemes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/SewerageTarrifs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/SewerageTarrifs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/SubZones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/SubZones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tbs/models/UnmeteredWaterTarrifs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tbs/models/UnmeteredWaterTarrifs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tbsio/TBSConnect.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tbsmini/TbsMini.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/socket/java/out/production/socket/Socker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../test/socket/java/out/production/socket/Socker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/socket/java/src/Socker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../test/socket/java/src/Socker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sql/HPSQL$Operands.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sql/HPSQL$Operands.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sql/HPSQL$Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sql/HPSQL$Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sql/HPSQL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sql/HPSQL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sql/Insert.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sql/Insert.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sql/Select.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sql/Select.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/io/TBSTables.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/io/TBSTables.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/BoreholeLicenseTarrifs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/BoreholeLicenseTarrifs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/CustomerCategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/CustomerCategory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/CustomerServiceAreas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/CustomerServiceAreas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/CustomerStreets.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/CustomerStreets.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/CustomerTypes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/CustomerTypes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/CustomerZones.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/CustomerZones.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/MeteredWaterTarrifs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/MeteredWaterTarrifs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/Schemes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/Schemes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/SewerageTarrifs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/SewerageTarrifs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/SubZones.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/SubZones.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tbs/models/UnmeteredWaterTarrifs.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tbs/models/UnmeteredWaterTarrifs.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
