@@ -13,6 +13,7 @@ public class Insert extends HPSQL{
     //INSERT INTO School(name, school) VALUES('ade', 'louis');
     private Map<String, Object> columnsAndValue = null;
     private Object bean = null;
+    private Object[] beans = null;
     private Map<String, String> keySwapping = null;
     private String [] excludes = null;
     private String tableName = null;
@@ -110,7 +111,7 @@ public class Insert extends HPSQL{
 
         PreparedStatement prs = con.prepareStatement(sb.toString());
         Arrays.stream((Object[])keyValue[2]).forEach(data -> {
-//            System.out.println(data);
+            System.out.println(data);
             try {
                 prs.setObject(atomicInteger.getAndIncrement(), data);
 

@@ -115,6 +115,10 @@ public class HPSQL {
         OR, AND
     }
 
+    public Object getMethodValue(Object bean, String methodName) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        return bean.getClass().getDeclaredMethod(getGetters(methodName)).invoke(bean);
+    }
+
     public String[] getColumnFromJson(JSONObject obj){
         List<String> keys = new ArrayList<>();
         obj.keys().forEachRemaining(keys::add);
@@ -377,7 +381,6 @@ public class HPSQL {
         return new Object[]{keyBuilder.toString(), valueBuilder};
     }
 
-
     private String [] columnsAndValuesPreparedStatement(JSONObject jsonObject){
         Map<String, Object> map = jsonObject.toMap();
 
@@ -515,14 +518,18 @@ public class HPSQL {
     public Object keyEqualValue(Map<String, Object> map, String delimiter){
 
         StringBuilder builder = new StringBuilder();
+
         map.forEach((key, value) -> {
+
             builder.append(key);
             builder.append("=");
             builder.append(getDataTypeValue(value));
             builder.append(" ");
             builder.append(delimiter);
             builder.append(" ");
+
         });
+
         int len = builder.length();
 
         return builder.delete(len - (delimiter.length()+1), len);
@@ -536,12 +543,11 @@ public class HPSQL {
             builder.append(key);
             builder.append("=");
             builder.append("?");
-            builder.append(" ");
             builder.append(delimiter);
             builder.append(" ");
         });
-        builder.substring(0, builder.length() - (delimiter.length()+3));
-        return builder;
+        return builder.substring(0, builder.length() - (delimiter.length()+1));
+
     }
     /**
      * It turns red to 'red'

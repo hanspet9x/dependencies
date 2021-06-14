@@ -1,5 +1,7 @@
 package sql;
 
+import hp.io.Console;
+
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -137,6 +139,7 @@ public class Select extends HPSQL{
         if(offset > 0){
             sb.append(" START AT ");
             sb.append(offset);
+            sb.append(" ");
         }
 
         processExclude();
@@ -240,7 +243,7 @@ public class Select extends HPSQL{
 
     @SuppressWarnings("unchecked")
     private <T> List<T> resultSetObj(Connection con, Class<T> beanClass, String sql) throws SQLException {
-
+        Console.log(sql);
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<T> rsList = new ArrayList<>();
         while (rs.next()){
@@ -250,12 +253,9 @@ public class Select extends HPSQL{
                 Arrays.stream(columns)
                         .forEach(column -> {
                             try {
-
                                 String cData = fromSnakeCase(column);
-
                                 Object rowValue = rs.getObject(getChangedColumn(fromCamelCase(column)));
                                 Class<?> fieldClass = beanObj.getClass().getDeclaredField(cData).getType();
-
                                 rowValue = rowValue == null ? getDataTypeEmptyValue(fieldClass.getTypeName()) : rowValue;
 
                                 beanObj.getClass()

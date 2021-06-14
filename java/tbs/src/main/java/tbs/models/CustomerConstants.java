@@ -10,8 +10,9 @@ public class CustomerConstants {
     private List<SubZones> subZones;
     private List<CustomerStreets> streets;
     private List<CustomerSubacctCategories> subacctCategories;
+    private List<Schemes> schemes;
 
-    public CustomerConstants(List<ComplaintCodes> complaintCodes, List<CustomerCategory> categories, List<CustomerTypes> types, List<CustomerServiceAreas> serviceAreas, List<SubZones> subZones, List<CustomerStreets> streets, List<CustomerSubacctCategories> subacctCategories) {
+    public CustomerConstants(List<ComplaintCodes> complaintCodes, List<CustomerCategory> categories, List<CustomerTypes> types, List<CustomerServiceAreas> serviceAreas, List<SubZones> subZones, List<CustomerStreets> streets, List<CustomerSubacctCategories> subacctCategories, List<Schemes> schemes) {
         this.complaintCodes = complaintCodes;
         this.categories = categories;
         this.types = types;
@@ -19,6 +20,7 @@ public class CustomerConstants {
         this.subZones = subZones;
         this.streets = streets;
         this.subacctCategories = subacctCategories;
+        this.schemes = schemes;
     }
 
     public CustomerConstants() {
@@ -78,5 +80,13 @@ public class CustomerConstants {
 
     public void setSubacctCategories(List<CustomerSubacctCategories> subacctCategories) {
         this.subacctCategories = subacctCategories;
+    }
+
+    public List<Schemes> getSchemes() {
+        return schemes;
+    }
+
+    public void setSchemes(List<Schemes> schemes) {
+        this.schemes = schemes;
     }
 }

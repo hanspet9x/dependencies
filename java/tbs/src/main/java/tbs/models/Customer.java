@@ -5,9 +5,6 @@ import java.io.Serializable;
 public class Customer implements Serializable {
     //,":"a","other_phone2":"1","additional_info":"a"}
 
-
-	private int id;
-	private int seen = 0;
 	private String agency;
 
 	private String isParent;
@@ -102,22 +99,6 @@ public class Customer implements Serializable {
 	private String contact1Phone;
 	private String contact2Phone;
 	private String notes;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getSeen() {
-		return seen;
-	}
-
-	public void setSeen(int seen) {
-		this.seen = seen;
-	}
 
 	public String getAgency() {
 		return agency;

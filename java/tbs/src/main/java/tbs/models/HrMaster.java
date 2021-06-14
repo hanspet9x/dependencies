@@ -5,22 +5,27 @@ import java.io.Serializable;
 public class HrMaster implements Serializable {
 
 
-	private int id;
 	private String emplNo;
+	private String emplName;
 	private String lName;
 	private String fName;
 	private String post;
 	private String agency;
+	private String department;
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getEmplNo() {
 		return emplNo;
 	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public void setEmplNo(String emplNo) {
 		this.emplNo = emplNo;
 	}
@@ -36,6 +41,7 @@ public class HrMaster implements Serializable {
 	public String getAgency() {
 		return agency;
 	}
+
 	public void setAgency(String agency) {
 		this.agency = agency;
 	}
@@ -54,5 +60,13 @@ public class HrMaster implements Serializable {
 
 	public void setPost(String post) {
 		this.post = post;
+	}
+
+	public String getEmplName() {
+		return emplName;
+	}
+
+	public void setEmplName(String emplName) {
+		this.emplName = emplName;
 	}
 }

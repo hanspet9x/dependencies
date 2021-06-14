@@ -9,8 +9,9 @@ public class Schemes implements Serializable {
 	private String code;
 	private String agency;
 	private float longitude;
+	private String city;
 	private float latitude;
-
+	private String capacity;
 
 	public Schemes() {
 		super();
@@ -65,10 +66,23 @@ public class Schemes implements Serializable {
 	}
 
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	public void setAgency(String agency) {
 		this.agency = agency;
 	}
 
-	
-	
+	public String getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ComplaintCodes implements Serializable {
 
-	private int id;
+
 	private int code;
 	private String description;
 	private String agency;
@@ -12,13 +12,7 @@ public class ComplaintCodes implements Serializable {
 	
 	public ComplaintCodes() {
 	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public int getCode() {
 		return code;
 	}

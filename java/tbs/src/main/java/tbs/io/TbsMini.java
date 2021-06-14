@@ -1,10 +1,14 @@
-package tbs.mini;
+package tbs.io;
 
 import interfaces.OnTbsMiniError;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -91,6 +95,22 @@ public class TbsMini {
         }
     }
 
+    private void autoLoadAppPath() throws IOException {
+        Iterator<Path> iterator = Files.newDirectoryStream(Paths.get(System.getenv("HOME_DRIVE")))
+                .iterator();
+        Path found = null;
+        while(iterator.hasNext()){
+            Path p = iterator.next();
+            if(p.endsWith("917")){
+                found = p;
+                break;
+            }
+        }
+
+        if(found != null){
+
+        }
+    }
     public String getDBPrefix(){
         return dbPrefix;
     }

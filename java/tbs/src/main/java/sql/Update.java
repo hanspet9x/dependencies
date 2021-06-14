@@ -1,10 +1,14 @@
 package sql;
 
+import hp.io.Console;
 import org.json.JSONObject;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -18,32 +22,58 @@ public class Update extends HPSQL{
     private String [] exclude = null;
     private Map<String, String> keySwapping = null;
     private Object whereValue = null;
+    private Object[] objects = null;
     private HPSQL.Operands operands = HPSQL.Operands.AND;
 
 
-    public void setColumnsAndValue(Map<String, Object> columnsAndValue) {
+    public Update setColumnsAndValue(Map<String, Object> columnsAndValue) {
         this.columnsAndValue = columnsAndValue;
+        return this;
     }
 
-    public void setWhere(Map<String, Object> where) {
+    public Update setColumnsAndValue(Object bean){
+        columnsAndValue = new JSONObject(bean).toMap();
+        return this;
+    }
+
+    public Update setWhere(Map<String, Object> where) {
         this.where = where;
+        return this;
     }
 
-    public void setTableName(String tableName) {
+    public Update setWhere(Object bean, String ...where){
+        this.where = new HashMap<>();
+        Arrays.stream(where).forEach(getterName -> {
+            try {
+                this.where.putIfAbsent(getterName, getMethodValue(bean, getterName));
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
+        return this;
+    }
+
+    public Update setTableName(String tableName) {
         this.tableName = tableName;
+        return this;
     }
 
-    public void setOperands(HPSQL.Operands operands) {
+    public Update setOperands(HPSQL.Operands operands) {
         this.operands = operands;
+        return this;
     }
 
-    public void setExclude(String[] exclude) {
+    public Update setExclude(String ...exclude) {
         this.exclude = exclude;
+        return this;
     }
 
-    public void setKeySwapping(Map<String, String> keySwapping) {
+    public Update setKeySwapping(Map<String, String> keySwapping) {
         this.keySwapping = keySwapping;
+        return this;
     }
+
+
 
     public String build(){
         StringBuilder sb = new StringBuilder();
@@ -61,36 +91,38 @@ public class Update extends HPSQL{
         return sb.toString();
     }
 
-    public PreparedStatement prepare(Connection con) throws SQLException {
+    public int prepare(Connection con) throws SQLException {
         StringBuilder sb = new StringBuilder();
         JSONObject data = setUp(sb);
 
         sb.append(keyEqualValuePreparedStatement(data, ","));
-        sb.append(" ) ");
-
         if(whereValue != null){
-            sb.append("WHERE ");
+            sb.append(" WHERE ");
             sb.append(whereValue);
-
         }
-
+        Console.log(sb.toString());
         PreparedStatement prs = con.prepareStatement(sb.toString());
         AtomicInteger atomicInteger = new AtomicInteger(1);
         data.toMap().forEach((key, value) -> {
             try {
-                prs.setObject(atomicInteger.incrementAndGet(), value);
+                prs.setObject(atomicInteger.getAndIncrement(), value);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         });
-
-        return prs;
+        int i = prs.executeUpdate();
+        prs.close();
+        return i;
     }
 
     private JSONObject setUp(StringBuilder sb){
+
         sb.append("UPDATE ");
+
         sb.append(tableName);
-        sb.append(" SET ( ");
+
+        sb.append(" SET ");
+
         JSONObject data = new JSONObject(columnsAndValue);
 
         if(exclude != null){
@@ -104,6 +136,7 @@ public class Update extends HPSQL{
         if(where != null){
             whereValue = keyEqualValue(where, parseOperand(operands));
         }
+
         return data;
 
     }

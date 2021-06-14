@@ -4,14 +4,16 @@ import com.google.gson.Gson;
 import sql.HPSQL;
 import sql.Insert;
 import sql.Select;
-import tbs.mini.TbsMini;
+import sql.Update;
 import tbs.models.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class TBSTables {
     private Connection con = null;
@@ -19,7 +21,8 @@ public class TBSTables {
     private HPSQL hpsql;
     private TbsMini mini;
     private String agencyName;
-
+    public static final String COMMERCIAL_DEPARTMENT = "COMMERCIAL";
+    private String[] excludes = {"agency", "sno", "year", "seen"};
     public TBSTables(String dsn) {
         this.dsn = this.pDsn = dsn;
         common();
@@ -83,6 +86,7 @@ public class TBSTables {
     }
 
     public CustomerConstants getCustomerConstants() throws SQLException {
+        useMain();
         List<ComplaintCodes> complaintCodes = getTableData(ComplaintCodes.class);
         List<CustomerCategory> categories = getTableData(CustomerCategory.class);
         List<CustomerTypes> types = getTableData(CustomerTypes.class);
@@ -90,14 +94,17 @@ public class TBSTables {
         List<SubZones> subZones = getTableData(SubZones.class, "customer_cc");
         List<CustomerStreets> streets = getTableData(CustomerStreets.class);
         List<CustomerSubacctCategories> subacctCategories = getTableData(CustomerSubacctCategories.class);
+        List<Schemes> schemes = getTableData(Schemes.class);
 
-        return new CustomerConstants(complaintCodes, categories, types, serviceAreas, subZones, streets, subacctCategories);
+        return new CustomerConstants(complaintCodes, categories, types, serviceAreas, subZones, streets, subacctCategories, schemes);
     }
 
     public String getCustomerConstantsJson() throws SQLException {
         return objToJson(getCustomerConstants());
     }
+
     public Tariffs getTariffs() throws SQLException {
+        useMain();
         List<BoreholeLicenseTarrifs> boreholeLicenseTariffs = getTableData(BoreholeLicenseTarrifs.class);
         List<MeteredWaterTarrifs> meteredWaterTarrifs = getTableData(MeteredWaterTarrifs.class);
         List<UnmeteredWaterTarrifs> unmeteredWaterTarrifs = getTableData(UnmeteredWaterTarrifs.class);
@@ -111,17 +118,37 @@ public class TBSTables {
         return objToJson(getTariffs());
     }
 
+    public EmployeeUsers getEmployeeAndUsers() throws SQLException {
+
+        return new EmployeeUsers(getEmployees(HrMaster.class), getUsers(Users.class));
+    }
+
+    public <T> List <T> getCommercialEmployees(Class<T> bean) throws SQLException {
+        return getEmployees(bean, Map.of("department", COMMERCIAL_DEPARTMENT));
+    }
+
+    public <T> String getCommercialEmployeesJson(Class<T> bean) throws SQLException{
+        useMain();
+        return objToJson(getCommercialEmployees(bean));
+    }
+
     public <T> List <T> getEmployees(Class<T> bean, Map<String, Object> where) throws SQLException {
+        useMain();
         return new Select()
                 .setTableName("hr_master")
                 .setColumns(hpsql.getColumnFromClass(bean))
+                .setIncludes(Map.of("agency", agencyName))
+                .setExclude("agency", "id")
                 .setWhere(where)
                 .resultSetObjISQL(getConnection(), bean);
     }
 
     public <T> List <T> getEmployees(Class<T> bean) throws SQLException {
+        useMain();
         return new Select()
                 .setTableName("hr_master")
+                .setIncludes(Map.of("agency", agencyName))
+                .setExclude("agency", "id")
                 .setColumns(hpsql.getColumnFromClass(bean))
                 .resultSetObjISQL(getConnection(), bean);
     }
@@ -148,20 +175,112 @@ public class TBSTables {
         return objToJson(getComplaintsFileMovement(bean, where));
     }
 
-    public <T> List<T> getZonalCustomers(Class<T> bean, String zone, Map<String, Object> includes) throws  SQLException {
+    public <T> List<T> getZonalCustomers(Class<T> bean, String zone) throws  SQLException {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
                 .setExclude("id", "seen", "agency")
-                .setIncludes(includes)
+                .setIncludes(Map.of("agency", agencyName))
                 .setTableName("customers")
                 .setWhere(Map.of("zone", zone))
                 .resultSetObjISQL(getConnection(), bean);
 
     }
 
-    public <T> String getZonalCustomersJson(Class<T> bean, String zone, Map<String, Object> includes) throws  SQLException {
-        return objToJson(getZonalCustomers(bean, zone, includes));
+    public <T> void getStreamedData(Class<T> bean, int limit, String orderColumn, Consumer<String> consumer) throws SQLException {
+        int offset = 1; boolean loop = true;
+        while(loop){
+
+            List<T> table = new Select()
+                    .setTableName(hpsql.getTableNameFromBean(bean))
+                    .setColumns(hpsql.getColumnFromClass(bean))
+                    .setExclude("sno", "agency", "id", "year", "seen")
+                    .setIncludes(Map.of("agency", agencyName))
+                    .setLimit(limit)
+                    .setOffset(offset)
+                    .setOrder(HPSQL.Order.ASC)
+                    .setOrderColumn(orderColumn)
+                    .resultSetObjISQL(getConnection(), bean);
+            offset += table.size();
+            loop = table.size() > 0;
+            if(loop){
+                consumer.accept(objToJson(table));
+            }
+        }
+    }
+
+    public <T> void getStreamedData(Class<T> bean, int limit, String orderColumn, Map<String, Object> where, Consumer<String> consumer) throws SQLException {
+        int offset = 1; boolean loop = true;
+        while(loop){
+
+            List<T> table = new Select()
+                    .setTableName(hpsql.getTableNameFromBean(bean))
+                    .setColumns(hpsql.getColumnFromClass(bean))
+                    .setExclude("sno", "agency", "id", "year", "seen")
+                    .setIncludes(Map.of("agency", agencyName))
+                    .setLimit(limit)
+                    .setWhere(where)
+                    .setOffset(offset)
+                    .setOrder(HPSQL.Order.ASC)
+                    .setOrderColumn(orderColumn)
+                    .resultSetObjISQL(getConnection(), bean);
+            offset += table.size();
+            loop = table.size() > 0;
+            if(loop){
+                consumer.accept(objToJson(table));
+            }
+        }
+    }
+
+    public <T> void getStreamedZonalCustomers(Class<T> bean, String zone, int limit, Consumer<String> consumer) throws  SQLException {
+        int offset = 1; boolean loop = true;
+            while(loop){
+                List<T> customers = szc(bean, zone, limit, offset);
+                offset += customers.size();
+                loop = customers.size() > 0;
+                if(loop){
+                    consumer.accept(objToJson(customers));
+                }
+            }
+    }
+
+/*    public <T> void streamJson(Class<T> bean, int size, int offset, Consumer<String> consumer) throws SQLException {
+        int limit = size, offsetLen = 0; boolean loop = true;
+        while(loop){
+            List<T> data = getTableData(bean,);
+
+            offsetLen += data.size();
+            consumer.accept(objToJson(customers));
+            loop = customers.size() > 0;
+        }
+    }*/
+
+    private <T> List<T> szc(Class<T> bean, String zone, int limit, int offset) throws SQLException {
+        return new Select()
+                .setColumns(hpsql.getColumnFromClass(bean))
+                .setExclude("id", "seen", "agency")
+                .setIncludes(Map.of("agency", agencyName))
+                .setLimit(limit)
+                .setOffset(offset)
+                .setOrder(HPSQL.Order.ASC)
+                .setOrderColumn("sno")
+                .setTableName("customers")
+                .setWhere(Map.of("zone", zone))
+                .resultSetObjISQL(getConnection(), bean);
+    }
+
+    private Consumer<String> str (){
+        String data;
+        return new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+
+            }
+        };
+    }
+
+    public <T> String getZonalCustomersJson(Class<T> bean, String zone) throws  SQLException {
+        return objToJson(getZonalCustomers(bean, zone));
     }
 
     public <T> List<T> getZones(Class<T> bean) throws SQLException {
@@ -180,7 +299,7 @@ public class TBSTables {
 
     public <T> List<T> getUsers(Class<T> bean) throws SQLException {
         useGENE();
-        return getTableData(bean, "users");
+        return getTableData(bean, "users", Map.of("company_id", "1"));
     }
 
     public <T> String getUsersJson(Class<T> bean) throws SQLException {
@@ -215,7 +334,6 @@ public class TBSTables {
     Enumeration
      */
     public int addCustomerEnumeration(Object bean) throws SQLException {
-
         return new Insert()
                 .setBean(bean)
                 .setTableName("customers_enumeration")
@@ -233,11 +351,24 @@ public class TBSTables {
 
     }
 
+
+
+
+
+
     public int addTableData(Object bean, String tableName) throws SQLException {
         return new Insert()
                 .setTableName(tableName)
                 .setBean(bean)
-                .setExcludes("agency", "id", "seen", "code")
+                .setExcludes("agency", "id", "seen")
+                .prepareBean(getConnection());
+    }
+
+    public int addTableData(Object bean, String tableName, String ...excludes) throws SQLException {
+        return new Insert()
+                .setTableName(tableName)
+                .setBean(bean)
+                .setExcludes(excludes)
                 .prepareBean(getConnection());
     }
 
@@ -245,7 +376,15 @@ public class TBSTables {
         return new Insert()
                 .setTableName(hpsql.getTableNameFromBean(bean))
                 .setBean(bean)
-                .setExcludes("agency", "id", "seen", "code")
+                .setExcludes(Arrays.toString(excludes))
+                .prepareBean(getConnection());
+    }
+
+    public int addTableData(Object bean, String ...excludes) throws SQLException {
+        return new Insert()
+                .setTableName(hpsql.getTableNameFromBean(bean))
+                .setBean(bean)
+                .setExcludes(excludes)
                 .prepareBean(getConnection());
     }
 
@@ -357,6 +496,64 @@ public class TBSTables {
                 .resultSetISQL(getConnection());
     }
 
+    public int updateAll(Object bean) throws SQLException {
+        return new Update()
+                .setTableName(hpsql.getTableNameFromBean(bean))
+                .setColumnsAndValue(bean)
+                .setExclude(Arrays.toString(excludes))
+                .prepare(getConnection());
+
+    }
+
+    public int updateOne(Object bean, String ...beanProp) throws SQLException {
+        return new Update()
+                .setTableName(hpsql.getTableNameFromBean(bean))
+                .setColumnsAndValue(bean)
+                .setExclude(Arrays.toString(excludes))
+                .setWhere(bean, beanProp)
+                .prepare(getConnection());
+
+    }
+
+    public int updateOne(Object bean, Map<String, Object> where) throws SQLException {
+        return new Update()
+                .setTableName(hpsql.getTableNameFromBean(bean))
+                .setColumnsAndValue(bean)
+                .setExclude(Arrays.toString(excludes))
+                .setWhere(where)
+                .prepare(getConnection());
+
+    }
+
+    public <T> void updateMany(List<T> beans, String ...beanProp) throws SQLException {
+        beans.forEach(bean -> {
+            try {
+                new Update()
+                        .setTableName(hpsql.getTableNameFromBean(bean))
+                        .setColumnsAndValue(bean)
+                        .setExclude(Arrays.toString(excludes))
+                        .setWhere(bean, beanProp)
+                        .prepare(getConnection());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+    }
+
+    public <T> void updateMany(List<T> beans, Map<String, Object> where) throws SQLException {
+        beans.forEach(bean -> {
+            try {
+                new Update()
+                        .setTableName(hpsql.getTableNameFromBean(bean))
+                        .setColumnsAndValue(bean)
+                        .setExclude(Arrays.toString(excludes))
+                        .setWhere(where)
+                        .prepare(getConnection());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+    }
     public void updateCustomerSno() throws  SQLException {
         String sql = "SELECT custno FROM customers";
         Connection con = getConnection();
@@ -370,7 +567,7 @@ public class TBSTables {
         }
     }
 
-    private Connection getConnection(){
+    public Connection getConnection(){
         if(con == null){
             TBSConnect tbsConnect = new TBSConnect();
             return tbsConnect.getConnection(dsn);
@@ -382,7 +579,8 @@ public class TBSTables {
         return new Gson().toJson(T);
     }
 
-    public  <T> String objToJson(T bean){
+
+    public String objToJson(Object bean){
         return new Gson().toJson(bean);
     }
 }

@@ -1,7 +1,6 @@
 package tbs.io;
 
 import interfaces.OnTbsMiniError;
-import tbs.mini.TbsMini;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
