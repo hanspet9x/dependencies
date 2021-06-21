@@ -8,11 +8,12 @@ public class Cashbook {
     private String checkNo;
     private int income;
     private String details;
-    private String acNo;
     private int acctPer;
-    private String bankCode;
     private String userid;
     private String agency;
+    private String docRef;
+    private String trNo;
+
 
     public Cashbook() {
     }
@@ -65,22 +66,6 @@ public class Cashbook {
         this.details = details;
     }
 
-    public String getAcNo() {
-        return acNo;
-    }
-
-    public void setAcNo(String acNo) {
-        this.acNo = acNo;
-    }
-
-    public String getBankCode() {
-        return bankCode;
-    }
-
-    public void setBankCode(String bankCode) {
-        this.bankCode = bankCode;
-    }
-
     public String getUserid() {
         return userid;
     }
@@ -111,5 +96,21 @@ public class Cashbook {
 
     public void setAcctPer(int acctPer) {
         this.acctPer = acctPer;
+    }
+
+    public String getDocRef() {
+        return docRef;
+    }
+
+    public void setDocRef(String docRef) {
+        this.docRef = docRef;
+    }
+
+    public String getTrNo() {
+        return trNo;
+    }
+
+    public void setTrNo(String trNo) {
+        this.trNo = trNo;
     }
 }

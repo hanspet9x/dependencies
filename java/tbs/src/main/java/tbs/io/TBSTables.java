@@ -16,13 +16,14 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public class TBSTables {
-    private Connection con = null;
-    private String dsn, pDsn;
+    private final Connection con = null;
+    private String dsn;
+    private final String pDsn;
     private HPSQL hpsql;
     private TbsMini mini;
     private String agencyName;
     public static final String COMMERCIAL_DEPARTMENT = "COMMERCIAL";
-    private String[] excludes = {"agency", "sno", "year", "seen"};
+    private final String[] excludes = {"agency", "sno", "year", "seen", "leakPictureBase"};
     public TBSTables(String dsn) {
         this.dsn = this.pDsn = dsn;
         common();
@@ -50,11 +51,10 @@ public class TBSTables {
 
 
     public int addCustomer(Object bean) throws  SQLException {
-
         return new Insert()
                 .setBean(bean)
                 .setTableName("customers")
-                .setExcludes("id", "seen", "agency")
+                .setExcludes("id", "seen", "agency", "propertyPhotoBase", "ownerPhotoBase", "occupantPhotoBase")
                 .prepareBean(getConnection());
 
     }
@@ -179,7 +179,7 @@ public class TBSTables {
 
         return new Select()
                 .setColumns(hpsql.getColumnFromClass(bean))
-                .setExclude("id", "seen", "agency")
+                .setExclude("id", "seen", "agency", "propertyPhotoBase", "ownerPhotoBase", "occupantPhotoBase")
                 .setIncludes(Map.of("agency", agencyName))
                 .setTableName("customers")
                 .setWhere(Map.of("zone", zone))
@@ -376,11 +376,26 @@ public class TBSTables {
         return new Insert()
                 .setTableName(hpsql.getTableNameFromBean(bean))
                 .setBean(bean)
-                .setExcludes(Arrays.toString(excludes))
+                .setExcludes(excludes)
                 .prepareBean(getConnection());
     }
 
+    public <T> void addTableDataMany(List<T> beans) {
+        beans.forEach(bean -> {
+            try {
+                new Insert()
+                        .setTableName(hpsql.getTableNameFromBean(bean))
+                        .setBean(bean)
+                        .setExcludes(excludes)
+                        .prepareBean(getConnection());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+    }
+
     public int addTableData(Object bean, String ...excludes) throws SQLException {
+
         return new Insert()
                 .setTableName(hpsql.getTableNameFromBean(bean))
                 .setBean(bean)
@@ -525,7 +540,7 @@ public class TBSTables {
 
     }
 
-    public <T> void updateMany(List<T> beans, String ...beanProp) throws SQLException {
+    public <T> void updateMany(List<T> beans, String ...beanProp) {
         beans.forEach(bean -> {
             try {
                 new Update()

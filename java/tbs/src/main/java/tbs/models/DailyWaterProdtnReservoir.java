@@ -1,18 +1,6 @@
 package tbs.models;
 
 public class DailyWaterProdtnReservoir {
-    private double balQty1;
-    private double balQty10;
-    private double balQty11;
-    private double balQty12;
-    private double balQty2;
-    private double balQty3;
-    private double balQty4;
-    private double balQty5;
-    private double balQty6;
-    private double balQty7;
-    private double balQty8;
-    private double balQty9;
     private double capacity;
     private int day;
     private double m1;
@@ -27,11 +15,20 @@ public class DailyWaterProdtnReservoir {
     private double m7;
     private double m8;
     private double m9;
+    private int acctYear;
     private String scheme;
     private String zone;
     private String agency;
 
     public DailyWaterProdtnReservoir() {
+    }
+
+    public int getAcctYear() {
+        return acctYear;
+    }
+
+    public void setAcctYear(int acctYear) {
+        this.acctYear = acctYear;
     }
 
     public double getCapacity() {
@@ -170,99 +167,4 @@ public class DailyWaterProdtnReservoir {
         this.agency = agency;
     }
 
-    public double getBalQty1() {
-        return balQty1;
-    }
-
-    public void setBalQty1(double balQty1) {
-        this.balQty1 = balQty1;
-    }
-
-    public double getBalQty10() {
-        return balQty10;
-    }
-
-    public void setBalQty10(double balQty10) {
-        this.balQty10 = balQty10;
-    }
-
-    public double getBalQty11() {
-        return balQty11;
-    }
-
-    public void setBalQty11(double balQty11) {
-        this.balQty11 = balQty11;
-    }
-
-    public double getBalQty12() {
-        return balQty12;
-    }
-
-    public void setBalQty12(double balQty12) {
-        this.balQty12 = balQty12;
-    }
-
-    public double getBalQty2() {
-        return balQty2;
-    }
-
-    public void setBalQty2(double balQty2) {
-        this.balQty2 = balQty2;
-    }
-
-    public double getBalQty3() {
-        return balQty3;
-    }
-
-    public void setBalQty3(double balQty3) {
-        this.balQty3 = balQty3;
-    }
-
-    public double getBalQty4() {
-        return balQty4;
-    }
-
-    public void setBalQty4(double balQty4) {
-        this.balQty4 = balQty4;
-    }
-
-    public double getBalQty5() {
-        return balQty5;
-    }
-
-    public void setBalQty5(double balQty5) {
-        this.balQty5 = balQty5;
-    }
-
-    public double getBalQty6() {
-        return balQty6;
-    }
-
-    public void setBalQty6(double balQty6) {
-        this.balQty6 = balQty6;
-    }
-
-    public double getBalQty7() {
-        return balQty7;
-    }
-
-    public void setBalQty7(double balQty7) {
-        this.balQty7 = balQty7;
-    }
-
-    public double getBalQty8() {
-        return balQty8;
-    }
-
-    public void setBalQty8(double balQty8) {
-        this.balQty8 = balQty8;
-    }
-
-    public double getBalQty9() {
-        return balQty9;
-    }
-
-    public void setBalQty9(double balQty9) {
-        this.balQty9 = balQty9;
-    }
 }

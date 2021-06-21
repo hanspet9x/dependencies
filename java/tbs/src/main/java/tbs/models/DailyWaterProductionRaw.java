@@ -15,11 +15,21 @@ public class DailyWaterProductionRaw {
     private double m7;
     private double m8;
     private double m9;
+    private int acctYear;
     private String scheme;
     private String zone;
     private String agency;
 
     public DailyWaterProductionRaw() {
+    }
+
+
+    public int getAcctYear() {
+        return acctYear;
+    }
+
+    public void setAcctYear(int acctYear) {
+        this.acctYear = acctYear;
     }
 
     public double getCapacity() {

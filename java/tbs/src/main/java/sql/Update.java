@@ -32,7 +32,9 @@ public class Update extends HPSQL{
     }
 
     public Update setColumnsAndValue(Object bean){
-        columnsAndValue = new JSONObject(bean).toMap();
+        columnsAndValue = new HashMap<>();
+        Map<String, Object> map = new JSONObject(bean).toMap();
+        map.forEach((s, o) -> columnsAndValue.put(fromCamelCase(s), o));
         return this;
     }
 
@@ -45,7 +47,7 @@ public class Update extends HPSQL{
         this.where = new HashMap<>();
         Arrays.stream(where).forEach(getterName -> {
             try {
-                this.where.putIfAbsent(getterName, getMethodValue(bean, getterName));
+                this.where.putIfAbsent(fromCamelCase(getterName), getMethodValue(bean, getterName));
             } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -132,6 +134,7 @@ public class Update extends HPSQL{
         if(keySwapping != null){
             data = replaceColumn(data, keySwapping);
         }
+
 
         if(where != null){
             whereValue = keyEqualValue(where, parseOperand(operands));

@@ -4,19 +4,19 @@ import java.io.Serializable;
 import java.util.List;
 
 public class CustomerEnumerations implements Serializable {
-    private final List<Customer> customers;
-    private final List<Enumeration> enumerations;
+    private final List<Customers> customers;
+    private final List<CustomersEnumeration> customersEnumerations;
 
-    public CustomerEnumerations(List<Customer> customers, List<Enumeration> enumerations) {
+    public CustomerEnumerations(List<Customers> customers, List<CustomersEnumeration> customersEnumerations) {
         this.customers = customers;
-        this.enumerations = enumerations;
+        this.customersEnumerations = customersEnumerations;
     }
 
-    public List<Customer> getCustomers() {
+    public List<Customers> getCustomers() {
         return customers;
     }
 
-    public List<Enumeration> getEnumerations() {
-        return enumerations;
+    public List<CustomersEnumeration> getEnumerations() {
+        return customersEnumerations;
     }
 }

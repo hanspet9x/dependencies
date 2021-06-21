@@ -16,11 +16,20 @@ public class DailyWaterConsumption {
     private double m7;
     private double m8;
     private double m9;
+    private int year;
     private String scheme;
     private String zone;
     private String agency;
 
     public DailyWaterConsumption() {
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public double getCapacity() {

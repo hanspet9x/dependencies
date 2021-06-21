@@ -110,14 +110,20 @@ public class Insert extends HPSQL{
         sb.append(")");
 
         PreparedStatement prs = con.prepareStatement(sb.toString());
+        String []columns = keyValue[0].toString().split(",");
+
         Arrays.stream((Object[])keyValue[2]).forEach(data -> {
-            System.out.println(data);
+//            String col = keyValue[0][atomicInteger.getAndIncrement()];
+//            Console.log(keyValue[0].toString().split(",")[atomicInteger.get()-1],
+//                    data, atomicInteger);
             try {
+                data = data == null ? "" : data;
                 prs.setObject(atomicInteger.getAndIncrement(), data);
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+
         });
 
         int i = prs.executeUpdate();

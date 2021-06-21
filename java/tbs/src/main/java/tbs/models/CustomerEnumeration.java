@@ -4,27 +4,27 @@ import java.io.Serializable;
 
 public class CustomerEnumeration implements Serializable {
 
-    private Customer customer;
-    private Enumeration enumeration;
+    private Customers customers;
+    private CustomersEnumeration customersEnumeration;
 
-    public CustomerEnumeration(Customer customer, Enumeration enumeration) {
-        this.customer = customer;
-        this.enumeration = enumeration;
+    public CustomerEnumeration(Customers customers, CustomersEnumeration customersEnumeration) {
+        this.customers = customers;
+        this.customersEnumeration = customersEnumeration;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Customers getCustomer() {
+        return customers;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(Customers customers) {
+        this.customers = customers;
     }
 
-    public Enumeration getEnumeration() {
-        return enumeration;
+    public CustomersEnumeration getEnumeration() {
+        return customersEnumeration;
     }
 
-    public void setEnumeration(Enumeration enumeration) {
-        this.enumeration = enumeration;
+    public void setEnumeration(CustomersEnumeration customersEnumeration) {
+        this.customersEnumeration = customersEnumeration;
     }
 }

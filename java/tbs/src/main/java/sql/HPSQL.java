@@ -267,6 +267,7 @@ public class HPSQL {
         Arrays.stream(bean.getClass().getDeclaredMethods()).forEach(method -> {
             String data = method.getName();
             String strippedOfSetters = removeSetters(method.getName());
+//            Console.log("strip", strippedOfSetters);
             if(data.startsWith("get") && !excludesList.contains(strippedOfSetters)){
 
                 valueBuilder.append("?");
@@ -549,6 +550,7 @@ public class HPSQL {
         return builder.substring(0, builder.length() - (delimiter.length()+1));
 
     }
+
     /**
      * It turns red to 'red'
      * @param data - String to quote

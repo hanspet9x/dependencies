@@ -2,30 +2,37 @@ package tbs.models;
 
 public class Testi {
 
-    private String auto;
-    private String datem;
+    private String idColumn;
+    private String nameCount;
+    private byte[] data;
 
-    public Testi(String name, String datem) {
-        this.auto = name;
-        this.datem = datem;
+    public Testi(String idColumn, String nameCount, byte[] data) {
+        this.idColumn = idColumn;
+        this.nameCount = nameCount;
+        this.data = data;
     }
 
-    public String getDatem() {
-        return datem;
+    public byte[] getData() {
+        return data;
     }
 
-    public void setDatem(String datem) {
-        this.datem = datem;
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
-    public Testi() {
+    public String getIdColumn() {
+        return idColumn;
     }
 
-    public String getAuto() {
-        return auto;
+    public void setIdColumn(String idColumn) {
+        this.idColumn = idColumn;
     }
 
-    public void setAuto(String name) {
-        this.auto = name;
+    public String getNameCount() {
+        return nameCount;
+    }
+
+    public void setNameCount(String nameCount) {
+        this.nameCount = nameCount;
     }
 }

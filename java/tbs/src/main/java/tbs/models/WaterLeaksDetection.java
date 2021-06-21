@@ -4,8 +4,6 @@ public class WaterLeaksDetection {
 
     private String  assignedTo;
     private String  cc;
-    private double  lastDocno;
-    private String  lastSurveyDate;
     private byte[]  leakPicture = "".getBytes();
     private String  leakingEquipmentUsed;
     private int  lengthOfPipe;
@@ -17,6 +15,7 @@ public class WaterLeaksDetection {
     private String leakPictureBase;
     private String  zone;
     private String agency;
+    private String pipelineCode;
 
     public WaterLeaksDetection() {
     }
@@ -35,22 +34,6 @@ public class WaterLeaksDetection {
 
     public void setCc(String cc) {
         this.cc = cc;
-    }
-
-    public double getLastDocno() {
-        return lastDocno;
-    }
-
-    public void setLastDocno(double lastDocno) {
-        this.lastDocno = lastDocno;
-    }
-
-    public String getLastSurveyDate() {
-        return lastSurveyDate;
-    }
-
-    public void setLastSurveyDate(String lastSurveyDate) {
-        this.lastSurveyDate = lastSurveyDate;
     }
 
     public byte[] getLeakPicture() {
@@ -139,5 +122,13 @@ public class WaterLeaksDetection {
 
     public void setLeakPictureBase(String leakPictureBase) {
         this.leakPictureBase = leakPictureBase;
+    }
+
+    public String getPipelineCode() {
+        return pipelineCode;
+    }
+
+    public void setPipelineCode(String pipelineCode) {
+        this.pipelineCode = pipelineCode;
     }
 }
