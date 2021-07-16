@@ -24,19 +24,31 @@ public class TBSTables {
     private String agencyName;
     public static final String COMMERCIAL_DEPARTMENT = "COMMERCIAL";
     private final String[] excludes = {"agency", "sno", "year", "seen", "leakPictureBase"};
+    private Drive drive = Drive.C;
     public TBSTables(String dsn) {
         this.dsn = this.pDsn = dsn;
         common();
     }
-
     public TBSTables() {
         common();
         this.dsn = this.pDsn = mini.getCurrentDsn();
     }
 
+    public TBSTables(Drive drive) {
+        this.drive = drive;
+        common();
+        this.dsn = this.pDsn = mini.getCurrentDsn();
+    }
+
+    public TBSTables(String dsn, Drive drive) {
+        this.drive = drive;
+        this.dsn = this.pDsn = dsn;
+        common();
+    }
+
     private void common(){
         this.hpsql = new HPSQL();
-        mini = new TbsMini();
+        mini = new TbsMini(drive);
         agencyName = mini.getAgencyName().toLowerCase();
     }
 
@@ -51,12 +63,68 @@ public class TBSTables {
 
 
     public int addCustomer(Object bean) throws  SQLException {
+        //retrieve last id , increment it and update it, use incremented for new customer.
+
         return new Insert()
                 .setBean(bean)
                 .setTableName("customers")
                 .setExcludes("id", "seen", "agency", "propertyPhotoBase", "ownerPhotoBase", "occupantPhotoBase")
                 .prepareBean(getConnection());
 
+    }
+
+    public CustomerZones getCustomerDataInc(Object bean, String customerZone) throws SQLException {
+        String tableName = hpsql.getTableNameFromBean(CustomerZones.class);
+        List<CustomerZones> zones = new Select()
+                .setTableName(tableName)
+                .setColumns("lastCustomerNo", "shortName")
+                .setWhere(Map.of("description", customerZone))
+                .resultSetObjISQL(getConnection(), CustomerZones.class);
+        int no = zones.get(0).getLastCustomerNo() + 1;
+
+        new Update()
+                .setTableName(tableName)
+                .setColumnsAndValue(Map.of("last_customer_no", no))
+                .setWhere(Map.of("description", customerZone))
+                .prepare(getConnection());
+        zones.get(0).setLastCustomerNo(no);
+        return zones.get(0);
+    }
+
+    /**
+     * Get last customer no added for this zone, increments it and update the table. It uses the incremented details
+     * to create the customer no.
+     * @param bean Customers
+     * @return int
+     * @throws SQLException exception
+     */
+    public Customers addCustomer(Customers bean) throws  SQLException {
+        //retrieve last id , increment it and update it, use incremented for new customer.
+        CustomerZones zone = getCustomerDataInc(bean, bean.getZone());
+        bean.setCustno(getCustomerNo(zone));
+
+        new Insert()
+                .setBean(bean)
+                .setTableName("customers")
+                .setExcludes("id", "seen", "agency", "propertyPhotoBase", "ownerPhotoBase", "occupantPhotoBase")
+                .prepareBean(getConnection());
+        return bean;
+    }
+
+    private String getCustomerNo(CustomerZones zones){
+        return mini.getDBPrefix()+"/"+zones.getShortName()+"/"+prependZero(5, zones.getLastCustomerNo()+"");
+    }
+
+    public String prependZero(int length, String data){
+        if(length > data.length()){
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < length-data.length(); i++) {
+                builder.append(0);
+            }
+            builder.append(data);
+            return builder.toString();
+        }
+       return data;
     }
 
     public int addCustomerComplaints(Object bean) throws SQLException {
@@ -381,13 +449,14 @@ public class TBSTables {
     }
 
     public <T> void addTableDataMany(List<T> beans) {
+        Connection con = getConnection();
         beans.forEach(bean -> {
             try {
                 new Insert()
                         .setTableName(hpsql.getTableNameFromBean(bean))
                         .setBean(bean)
                         .setExcludes(excludes)
-                        .prepareBean(getConnection());
+                        .prepareBean(con);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -541,6 +610,7 @@ public class TBSTables {
     }
 
     public <T> void updateMany(List<T> beans, String ...beanProp) {
+        Connection con = getConnection();
         beans.forEach(bean -> {
             try {
                 new Update()
@@ -548,7 +618,7 @@ public class TBSTables {
                         .setColumnsAndValue(bean)
                         .setExclude(Arrays.toString(excludes))
                         .setWhere(bean, beanProp)
-                        .prepare(getConnection());
+                        .prepare(con);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -556,6 +626,7 @@ public class TBSTables {
     }
 
     public <T> void updateMany(List<T> beans, Map<String, Object> where) throws SQLException {
+        Connection con = getConnection();
         beans.forEach(bean -> {
             try {
                 new Update()
@@ -563,7 +634,7 @@ public class TBSTables {
                         .setColumnsAndValue(bean)
                         .setExclude(Arrays.toString(excludes))
                         .setWhere(where)
-                        .prepare(getConnection());
+                        .prepare(con);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }

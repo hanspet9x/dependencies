@@ -1,0 +1,36 @@
+{
+  "name": "@hanspet/net",
+  "version": "1.0.0",
+  "description": "A library that contains APIs for maintaing sockets, creating server sent events, used for sending requests to the client and receiving responses from the server, see progress of uploading and downloading data, create event source, receive server sent events, suitable for PWAs, and helps create url queries.",
+  "main": "index.js",
+  "scripts": {
+    "test": "\\",
+    "start node": "nodemon start ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hanspet9x/net.git"
+  },
+  "keywords": [
+    "Sockets",
+    "Server Sent Event",
+    "SSE",
+    "EventSource",
+    "Fetch",
+    "XMLHttpRequest",
+    "IndexedDB",
+    "PWA",
+    "FetchStore",
+    "Cache",
+    "Response"
+  ],
+  "author": "Akinlolu Peter Ayodeji peterakinlolu1@gmail.com www.hanspet.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanspet9x/net/issues"
+  },
+  "homepage": "https://github.com/hanspet9x/net#readme",
+  "dependencies": {
+    "@hanspet/js-api": "^1.0.1"
+  }
+}

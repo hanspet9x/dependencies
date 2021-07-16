@@ -1,0 +1,24 @@
+{
+  "name": "@hanspet/react",
+  "version": "1.0.0",
+  "description": "Flexible and Scalable react UI components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "\\"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hanspet9x/react.git"
+  },
+  "keywords": [
+    "Table",
+    "ButtonLoader",
+    "Loader"
+  ],
+  "author": "Akinlolu Peter Ayodeji peterakinlolu1@gmail.com www.hanspet.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanspet9x/react/issues"
+  },
+  "homepage": "https://github.com/hanspet9x/react#readme"
+}

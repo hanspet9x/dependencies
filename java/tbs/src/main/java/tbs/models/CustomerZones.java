@@ -8,6 +8,7 @@ public class CustomerZones implements Serializable {
     private String description;
     private String shortName;
     private String agency;
+    private int lastCustomerNo;
 
     public CustomerZones() {}
 
@@ -41,5 +42,13 @@ public class CustomerZones implements Serializable {
 
     public void setShortName(String shortName) {
         this.shortName = shortName;
+    }
+
+    public int getLastCustomerNo() {
+        return lastCustomerNo;
+    }
+
+    public void setLastCustomerNo(int lastCustomerNo) {
+        this.lastCustomerNo = lastCustomerNo;
     }
 }

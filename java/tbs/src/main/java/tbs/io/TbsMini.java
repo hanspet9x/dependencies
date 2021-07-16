@@ -1,6 +1,7 @@
 package tbs.io;
 
 import interfaces.OnTbsMiniError;
+import tbs.models.Drive;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,7 +16,7 @@ import java.util.Properties;
 public class TbsMini {
 
     private Properties properties = null;
-    private final String tbsMiniPath = "C:\\Tbswin\\Tbsmini.ini";
+    private String tbsMiniPath = "Tbswin\\Tbsmini.ini";
     private String appMiniPath = null;
     private String dbPath = null;
     private String appPath = null;
@@ -25,12 +26,20 @@ public class TbsMini {
     private String serverName = null;
     private String computerName = null;
     private int currentFiscalYear = 0;
+    private Drive drive = Drive.C;
 
     public TbsMini() {
+        tbsMiniPath = getDrive()+tbsMiniPath;
         properties = getProps();
         init();
     }
 
+    public TbsMini(Drive drive) {
+        this.drive = drive;
+        tbsMiniPath = getDrive()+tbsMiniPath;
+        properties = getProps();
+        init();
+    }
 
     /**
      * It loads App path from tbsmini inside tbswin and instantiates the properties object.
@@ -48,7 +57,7 @@ public class TbsMini {
                 appDirName = properties.get(appPathKey).toString().replaceAll("[' ]",
                         "");
 
-                appPath = "C:\\"+appDirName;
+                appPath = getPathByDrive(appDirName);
                 appMiniPath = appPath+"\\Tbsmini17.ini";
                 reader = new FileReader(appMiniPath);
                 properties.load(reader);
@@ -65,7 +74,7 @@ public class TbsMini {
 
     private void init() {
         dbDirName = appDirName.replace("9", "").toLowerCase();
-        dbPath = "C:\\tbswin\\database\\sybase\\"+dbDirName+"\\";
+        dbPath = getPathByDrive("tbswin\\database\\sybase\\"+dbDirName+"\\");
         dbPrefix = get("DATAPREFIX");
         currentFiscalYear = Integer.parseInt(get("CURRENT_FISCAL_YR").trim());
         serverName = get("ServerName");
@@ -172,6 +181,14 @@ public class TbsMini {
     }
 
 
+    private String getPathByDrive(String path){
+        return getDrive()+path;
+    }
+
+    private String getDrive(){
+        if(drive == Drive.E)return "E:\\";
+            return "C:\\";
+    }
     public String getDSNFromDBName(String dbName){
         if(dbName.contains(".db")) dbName = dbName.replace(".db", "");
 

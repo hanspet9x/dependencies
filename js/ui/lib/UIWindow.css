@@ -1,0 +1,52 @@
+.ui-window{
+    position: absolute;
+    top: 0px;
+    transform:translateY(100px);
+    will-change: opacity, transform;
+    transition: .5s;
+    background-color: rgb(235, 232, 232);
+    width: 100%;
+    left:0px;
+    scrollbar-width: thin;
+   /* border:solid 1px red; */
+    z-index: 10;
+}
+
+.ui-window-hide{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ui-window-show{
+    opacity: 1;
+    pointer-events: auto;
+    transform:translateY(0px);
+}
+
+.ui-window .ui-window-close-wrapper{
+
+    padding:10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(221, 221, 221);
+    position: sticky;
+    z-index: 2;
+    top:0px;
+    
+}
+
+.ui-window .ui-window-close-wrapper > h3{
+    margin: 0px;
+    font-weight: lighter;
+    color:#333333;
+}
+
+.ui-window .ui-window-close-wrapper > span{
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.ui-window .ui-window-body{
+    padding:20px;
+}
