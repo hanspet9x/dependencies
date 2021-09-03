@@ -12,7 +12,6 @@ public class Cashbook {
     private String userid;
     private String agency;
     private String docRef;
-    private String trNo;
 
 
     public Cashbook() {
@@ -104,13 +103,5 @@ public class Cashbook {
 
     public void setDocRef(String docRef) {
         this.docRef = docRef;
-    }
-
-    public String getTrNo() {
-        return trNo;
-    }
-
-    public void setTrNo(String trNo) {
-        this.trNo = trNo;
     }
 }

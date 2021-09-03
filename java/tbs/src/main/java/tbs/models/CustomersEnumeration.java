@@ -9,12 +9,12 @@ public class CustomersEnumeration implements Serializable {
     private String cc;
     private String address1;
     private String residentialUnit;
-    private int numberOfRooms;
+    private int numberOfRooms = 0;
     private String roundDesc;
-    private int numberOfOccupants;
-    private int numberOfBlocks;
-    private int estimateWaterUsage;
-    private int noOfFloors;
+    private int numberOfOccupants = 0;
+    private int numberOfBlocks = 0;
+    private int estimateWaterUsage = 0;
+    private int noOfFloors = 0;
     private String lastEnumerated = "2000-01-01";
     private String sanitaryType;
     private String noOfBathrooms;

@@ -1,27 +1,32 @@
-import hp.io.Console;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import io.Console;
 import sql.HPSQL;
 import tbs.io.TBSConnect;
 import tbs.io.TBSTables;
 import tbs.io.TbsMini;
-import tbs.models.CustomerZones;
+import tbs.models.Cashbook;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 public class Test {
 
-    void testTbsMini(){
+    void testTbsMini() throws IOException {
 
         TbsMini tbsMini = new TbsMini();
-        tbsMini.setOnTbsMiniError( e -> Console.error(e));
+        tbsMini.setOnTbsMiniError(e -> Console.error(e));
         tbsMini.getDBNames().forEach(Console::log);
         Console.log(tbsMini.getDbPath());
     }
 
-    void testTbsConnect() {
+    void testTbsConnect() throws IOException {
 
         TBSConnect connect = new TBSConnect();
         TbsMini mini = connect.getTbsMini();
@@ -35,17 +40,40 @@ public class Test {
 //        connect.getConnection();
 
     }
+
     void hello(Consumer<Integer> consumer) throws InterruptedException {
         int i = 0;
-        while(i++ < 10){
+        while (i++ < 10) {
             consumer.accept(i);
             Thread.sleep(1000);
         }
     }
+
     void connectTable() throws SQLException, IOException, InterruptedException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
 //        TBSTables tb = new TBSTables("BSW012021_17");
         TBSTables tb = new TBSTables();
         HPSQL hpsql = new HPSQL();
+        TBSConnect connect = new TBSConnect();
+        TbsMini mini = new TbsMini();
+
+        String update = "[{\"_id\":\"612bed201104cc723c203e6a\",\"docDt\":\"2021-08-28\",\"custno\":\"DSW/ASB/00005\",\"custname\":\"EGBEGBUEZE, MIKE\",\"docRef\":\"100\",\"invoiceNo\":\"100\",\"checkNo\":\"200\",\"income\":5000,\"acctPer\":8,\"details\":\"Payment\",\"zone\":\"ASABA\",\"agency\":\"desuwaco\",\"seen\":false,\"__v\":0}]";
+        Type type = new TypeToken<ArrayList<Cashbook>>() {
+        }.getType();
+
+        List<Cashbook> cashbooks = new Gson().fromJson(update, type);
+        tb.addTableDataMany(cashbooks);
+        //CustomersEnumeration customersE = new Gson().fromJson(update, CustomersEnumeration.class);
+//        Customers customers = new Gson().fromJson(update, Customers.class);
+//        tb.updateOne(customers, "custno");
+//        tb.updateOne(customersE, "custno");
+//        String data = "{\"title\":\"Alhaji\",\"lastname\":\"Akinlolu\",\"firstname\":\"Peter\",\"othername\":\"\",\"serviceArea\":\"\",\"telephone\":\"\",\"telephone2\":\"\",\"email\":\"peterakinlolu1@gmail.com\",\"owner\":\"\",\"emailBill\":\"\",\"smsNotification\":\"\",\"locationDensity\":\"\",\"zone\":\"WARRI\",\"cc\":\"WARRI\",\"houseNo\":\"1\",\"address1\":\"no-street\",\"city\":\"Isheri\",\"customerType\":\"\",\"businessType\":\"\",\"lastPayment\":\"0\",\"lastPaymentDate\":\"2020-10-13\",\"openingDate\":\"2020-10-14\",\"balance\":\"0\",\"longitude\":\"0\",\"latitude\":\"0\",\"altitude\":\"0\",\"numberOfRooms\":\"0\",\"numberOfBlocks\":\"0\",\"numberOfOccupants\":\"0\",\"noOfFloors\":\"0\",\"estimateWaterUsage\":\"0\",\"lastEnumerated\":\"2020-10-13\",\"residentialUnit\":\"\",\"roundDesc\":\"\",\"noOfBathrooms\":\"0\",\"lastMeterReading\":\"0\",\"lastRecharged\":\"2020-10-13\",\"metered\":\"\",\"prepaid\":\"\",\"statusLastReview\":\"2020-10-12\",\"active\":\"\",\"status\":\"\",\"chargeWater\":\"\",\"chargeSewerage\":\"\",\"waterUnits1\":\"\",\"waterSource1\":\"\",\"consumptionEstimate1\":\"0\",\"consumptionEstimate2\":\"0\",\"consumptionEstimate3\":\"0\",\"meter1MultiplierCode\":\"0\",\"meter2MultiplierCode\":\"0\",\"shipToAddress1\":\"suite 5, channels TV drive\",\"propertyPhotoBase\":\"\",\"occupantPhotoBase\":\"\",\"ownerPhotoBase\":\"\",\"agency\":\"desuwaco\"}";
+//
+//                Customers customers = new Gson().fromJson(data, Customers.class);
+//        CustomersEnumeration customersE = new Gson().fromJson(data, CustomersEnumeration.class);
+//        String custno = tb.addCustomer(customers).getCustno();
+//        Console.log(custno);
+//        customersE.setCustno(custno);
+//        tb.addCustomerEnumeration(customersE);
 //        Console.log(tb.getZonesJson(CustomerZones.class));
 
 //        Customers customers = new Customers();
@@ -53,8 +81,8 @@ public class Test {
 //        customers.setAddress1("Adree");
 //        tb.addCustomer(customers);
 
-        Console.log(tb.prependZero(5, "ASB)O"));
-        String tableName = hpsql.getTableNameFromBean(CustomerZones.class);
+//        Console.log(tb.prependZero(5, "ASB)O"));
+//        String tableName = hpsql.getTableNameFromBean(CustomerZones.class);
 //        List<CustomerZones> zones = new Select()
 //                .setTableName(tableName)
 //                .setColumns("lastCustomerNo")

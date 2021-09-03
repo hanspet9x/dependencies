@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="hpapi_jar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../hpapi/out/artifacts/hpapi_jar" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../hpapi/out/artifacts/hpapi_jar" recursive="false" />
+  </library>
+</component>

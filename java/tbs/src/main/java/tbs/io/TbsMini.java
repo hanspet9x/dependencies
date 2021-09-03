@@ -28,13 +28,13 @@ public class TbsMini {
     private int currentFiscalYear = 0;
     private Drive drive = Drive.C;
 
-    public TbsMini() {
+    public TbsMini() throws IOException {
         tbsMiniPath = getDrive()+tbsMiniPath;
         properties = getProps();
         init();
     }
 
-    public TbsMini(Drive drive) {
+    public TbsMini(Drive drive) throws IOException {
         this.drive = drive;
         tbsMiniPath = getDrive()+tbsMiniPath;
         properties = getProps();
@@ -46,11 +46,11 @@ public class TbsMini {
      * @return Properties
      * @throws IOException exception
      */
-    private Properties getProps() {
+    private Properties getProps() throws IOException {
         if(properties == null){
             properties = new Properties();
             FileReader reader = null;
-            try {
+
                 reader = new FileReader(tbsMiniPath);
                 properties.load(reader);
                 String appPathKey = "APP_PATH";
@@ -62,17 +62,14 @@ public class TbsMini {
                 reader = new FileReader(appMiniPath);
                 properties.load(reader);
                 return properties;
-            } catch (IOException | NullPointerException e) {
-                e.printStackTrace();
-                setError(e.getMessage());
-            }
+
 
 
         }
         return properties;
     }
 
-    private void init() {
+    private void init() throws IOException {
         dbDirName = appDirName.replace("9", "").toLowerCase();
         dbPath = getPathByDrive("tbswin\\database\\sybase\\"+dbDirName+"\\");
         dbPrefix = get("DATAPREFIX");
@@ -81,11 +78,11 @@ public class TbsMini {
         computerName = get("SERVER_COMPUTER_NAME");
     }
 
-    public String get(String key) {
+    public String get(String key) throws IOException {
         return getProps().get(key).toString().replaceAll("'", "");
     }
 
-    public void set(String key, String value) {
+    public void set(String key, String value) throws IOException {
         Properties prop = getProps();
         prop.setProperty(key, value);
         store();
@@ -208,7 +205,7 @@ public class TbsMini {
 
     }
 
-    public String getAgencyName() {
+    public String getAgencyName() throws IOException {
         return get("COMPANY_ABBREVIATION");
     }
 

@@ -1,6 +1,6 @@
 package sql;
 
-import hp.io.Console;
+import io.Console;
 import org.json.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
@@ -102,7 +102,7 @@ public class Update extends HPSQL{
             sb.append(" WHERE ");
             sb.append(whereValue);
         }
-        Console.log(sb.toString());
+        System.out.println(sb);
         PreparedStatement prs = con.prepareStatement(sb.toString());
         AtomicInteger atomicInteger = new AtomicInteger(1);
         data.toMap().forEach((key, value) -> {
@@ -128,7 +128,9 @@ public class Update extends HPSQL{
         JSONObject data = new JSONObject(columnsAndValue);
 
         if(exclude != null){
+            Arrays.asList(exclude).forEach(Console::log);
             data = excludeRow(data, exclude);
+            Console.log("CLEANSED", data);
         }
 
         if(keySwapping != null){

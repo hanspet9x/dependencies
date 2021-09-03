@@ -1,7 +1,5 @@
 package sql;
 
-import hp.io.Console;
-
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -243,7 +241,7 @@ public class Select extends HPSQL{
 
     @SuppressWarnings("unchecked")
     private <T> List<T> resultSetObj(Connection con, Class<T> beanClass, String sql) throws SQLException {
-        Console.log(sql);
+        System.out.println(sql);
         ResultSet rs = con.createStatement().executeQuery(sql);
         List<T> rsList = new ArrayList<>();
         while (rs.next()){

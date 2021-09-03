@@ -32,10 +32,10 @@ public class Customers implements Serializable {
 	private String telephone2;
 	private String smsNotification;
 	private String emailBill;
-	private double lastPayment;
+	private double lastPayment = 0.0;
 	private String lastPaymentDate = "2000-01-01";
 	private String openingDate = "2000-01-01";
-	private double balance;
+	private double balance = 0.0;
 	private String shipToHouseNo;
 	private String shipToAddress1;
 	private String shipToCity;
@@ -51,7 +51,7 @@ public class Customers implements Serializable {
 	private String longitude;
 	private String altitude;
 	private String metered;
-	private double lastMeterReading;
+	private double lastMeterReading = 0.0;
 	private String prepaid;
 	private String lastRecharged = "2000-01-01";
 	private String status;
@@ -67,9 +67,9 @@ public class Customers implements Serializable {
 	private String waterRateCode1;
 	private String waterRateCode2;
 	private String waterRateCode3;
-	private double consumptionEstimate1;
-	private double consumptionEstimate2;
-	private double consumptionEstimate3;
+	private double consumptionEstimate1 = 0.0;
+	private double consumptionEstimate2 = 0.0;
+	private double consumptionEstimate3 = 0.0;
 	private String baseWaterCharge;
 	private String waterUsageCharge;
 	private String payTax;
@@ -80,8 +80,8 @@ public class Customers implements Serializable {
 	private String meter1Installed = "2000-01-01";
 	private String meter1MiuNo;
 	private String meter1Location;
-	private int meter1MultiplierCode;
-	private double meter1Multiplier;
+	private int meter1MultiplierCode = 0;
+	private double meter1Multiplier = 0.0;
 	private String meter1Size;
 	private String waterUnits1;
 	private String waterSource1;
@@ -89,8 +89,8 @@ public class Customers implements Serializable {
 	private String meter2Installed = "2000-01-01";
 	private String meter2MiuNo;
 	private String meter2Location;
-	private int meter2MultiplierCode;
-	private double meter2Multiplier;
+	private int meter2MultiplierCode = 0;
+	private double meter2Multiplier = 0.0;
 	private String meter2Size;
 	private String waterUnits2;
 	private String waterSource2;

@@ -1,6 +1,7 @@
 package hp.net;
 
 import com.google.gson.Gson;
+import hp.io.Console;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Consumer;
 
 @SuppressWarnings("rawtypes")
 public class HttpFactory {
@@ -28,7 +30,9 @@ public class HttpFactory {
 
     private static Class typeClass;
 
-    public static void postForm(String url, Iterable<byte[]> data, HttpResponses response){
+    private static Consumer callback = null;
+
+    public static void postForm(String url, Iterable<byte[]> data, HttpResponses response) {
 
         Response = response;
         HttpClient client = getClient();
@@ -40,7 +44,7 @@ public class HttpFactory {
         setResponseType(client, req);
     }
 
-    public static void postBytes(String url, Iterable<byte[]> data){
+    public static void postBytes(String url, Iterable<byte[]> data) {
 
         HttpClient client = getClient();
         HttpRequest req = HttpRequest.newBuilder()
@@ -51,7 +55,7 @@ public class HttpFactory {
         setResponseType(client, req);
     }
 
-    public static void delete(String url){
+    public static void delete(String url) {
 
         HttpClient client = getClient();
         HttpRequest req = HttpRequest.newBuilder()
@@ -61,7 +65,7 @@ public class HttpFactory {
         setResponseType(client, req);
     }
 
-    public static void delete(String url, String data){
+    public static void delete(String url, String data) {
 
         HttpClient client = getClient();
         HttpRequest req = HttpRequest.newBuilder()
@@ -73,147 +77,153 @@ public class HttpFactory {
     }
 
 
-    public static void postObject(String url, Object bean){
+    public static void postObject(String url, Object bean) {
         postSetUp(url, new JSONObject(bean).toString());
     }
 
-    public static void postObject(String url, JSONObject obj){
+    public static void postObject(String url, JSONObject obj) {
         postSetUp(url, obj.toString());
     }
 
-    public static void postObject(String url, JSONArray obj){
+    public static void postObject(String url, JSONArray obj) {
         postSetUp(url, obj.toString());
     }
 
-    public static void postJSON(String url, String json){
+    public static <T> void postObject(String url, Object obj, Class<T> tClass, Consumer<T> callback) {
+        typeClass = tClass;
+        Response = HttpResponses.CLASS;
+        HttpFactory.callback = callback;
+        postSetUp(url, new Gson().toJson(obj));
+    }
+
+    public static void postJSON(String url, String json) {
         postSetUp(url, json);
     }
 
-    public static <T> void postJSON(String url, String json, Class<T> tClass){
+    public static <T> void postJSON(String url, String json, Class<T> tClass) {
         typeClass = tClass;
         postSetUp(url, json);
     }
 
-    public static void postObject(String url, Object bean, Header header){
+    public static void postObject(String url, Object bean, Header header) {
         postSetUp2(url, new JSONObject(bean).toString(), header);
     }
 
-    public static void postObject(String url, JSONObject obj, Header header){
+    public static void postObject(String url, JSONObject obj, Header header) {
         postSetUp2(url, obj.toString(), header);
     }
 
-    public static void postObject(String url, JSONArray obj, Header header){
+    public static void postObject(String url, JSONArray obj, Header header) {
         postSetUp2(url, obj.toString(), header);
     }
 
-    public static void postJSON(String url, String json, Header header){
+    public static void postJSON(String url, String json, Header header) {
         postSetUp2(url, json, header);
     }
-
-
 
 
     /*
     PUT
      */
-    public static void putObject(String url, Object bean){
+    public static void putObject(String url, Object bean) {
         putSetUp(url, new JSONObject(bean).toString());
     }
 
-    public static void putObject(String url, JSONObject obj){
+    public static void putObject(String url, JSONObject obj) {
         putSetUp(url, obj.toString());
     }
 
-    public static void putObject(String url, JSONArray obj){
+    public static void putObject(String url, JSONArray obj) {
         putSetUp(url, obj.toString());
     }
 
-    public static void putJSON(String url, String json){
+    public static void putJSON(String url, String json) {
         putSetUp(url, json);
     }
 
-    public static void putObject(String url, Object bean, Header header){
+    public static void putObject(String url, Object bean, Header header) {
         putSetUp2(url, new JSONObject(bean).toString(), header);
     }
 
-    public static void putObject(String url, JSONObject obj, Header header){
+    public static void putObject(String url, JSONObject obj, Header header) {
         putSetUp2(url, obj.toString(), header);
     }
 
-    public static void putObject(String url, JSONArray obj, Header header){
+    public static void putObject(String url, JSONArray obj, Header header) {
         putSetUp2(url, obj.toString(), header);
     }
 
-    public static void putJSON(String url, String json, Header header){
+    public static void putJSON(String url, String json, Header header) {
         putSetUp2(url, json, header);
     }
+
     /*
     GET
      */
-    public static void getJSON(String url){
+    public static void getJSON(String url) {
         Response = HttpResponses.JSON;
         getSetUp(url);
     }
 
-    public static void getText(String url){
+    public static void getText(String url) {
         Response = HttpResponses.TEXT;
         getSetUp(url);
     }
 
-    public static void getArray(String url){
+    public static void getArray(String url) {
         Response = HttpResponses.ARRAY;
         getSetUp(url);
     }
 
-    public static void getStream(String url){
+    public static void getStream(String url) {
         Response = HttpResponses.STREAM;
         getSetUp(url);
     }
 
-    public static void getStream(String url, Header header){
+    public static void getStream(String url, Header header) {
         Response = HttpResponses.STREAM;
         getSetUp(url, header);
     }
 
-    public static void getJSON(String url, Header header){
+    public static void getJSON(String url, Header header) {
         Response = HttpResponses.JSON;
         getSetUp(url, header);
     }
 
-    public static void getText(String url, Header header){
+    public static void getText(String url, Header header) {
         Response = HttpResponses.TEXT;
         getSetUp(url, header);
     }
 
-    public static void getArray(String url, Header header){
+    public static void getArray(String url, Header header) {
         Response = HttpResponses.ARRAY;
         getSetUp(url, header);
     }
 
-    public static void getPath(String url, Path downloadPath){
+    public static void getPath(String url, Path downloadPath) {
         Response = HttpResponses.PATH;
         RESPONSE_PATH = downloadPath;
         getSetUp(url);
     }
 
-    public static void getPath(String url, Header header, Path downloadPath){
+    public static void getPath(String url, Header header, Path downloadPath) {
         Response = HttpResponses.PATH;
         RESPONSE_PATH = downloadPath;
         getSetUp(url, header);
     }
 
-    public static void getBytes(String url){
+    public static void getBytes(String url) {
         Response = HttpResponses.BYTE_ARRAY;
         getSetUp(url, new Header("Content-Type", "application/octet-stream"));
     }
-    public static void getBytes(String url, Header header){
+
+    public static void getBytes(String url, Header header) {
         Response = HttpResponses.BYTE_ARRAY;
         getSetUp(url, header);
     }
 
 
-
-    private static HttpRequest getRequest(String url, String data){
+    private static HttpRequest getRequest(String url, String data) {
         return HttpRequest.newBuilder()
                 .header("Content-Type", "application/json")
                 .uri(URI.create(url))
@@ -221,7 +231,7 @@ public class HttpFactory {
                 .build();
     }
 
-    private static HttpRequest getRequest2(String url, String data, Header header){
+    private static HttpRequest getRequest2(String url, String data, Header header) {
         return HttpRequest.newBuilder()
                 .header("Content-Type", "application/json")
                 .header(header.key, header.value)
@@ -230,7 +240,7 @@ public class HttpFactory {
                 .build();
     }
 
-    private static HttpRequest getPutRequest(String url, String data){
+    private static HttpRequest getPutRequest(String url, String data) {
         return HttpRequest.newBuilder()
                 .header("Content-Type", "application/json")
                 .uri(URI.create(url))
@@ -238,7 +248,7 @@ public class HttpFactory {
                 .build();
     }
 
-    private static HttpRequest getPutRequest2(String url, String data, Header header){
+    private static HttpRequest getPutRequest2(String url, String data, Header header) {
         return HttpRequest.newBuilder()
                 .header("Content-Type", "application/json")
                 .header(header.key, header.value)
@@ -247,7 +257,7 @@ public class HttpFactory {
                 .build();
     }
 
-    private static HttpClient getClient(){
+    private static HttpClient getClient() {
         ExecutorService e = Executors.newCachedThreadPool();
         return HttpClient.newBuilder().
                 version(HttpClient.Version.HTTP_1_1)
@@ -255,40 +265,33 @@ public class HttpFactory {
                 .build();
     }
 
-    private static void postSetUp(String url, String data){
+    private static void postSetUp(String url, String data) {
         HttpRequest request = getRequest(url, data);
         putPostSetUp(request);
     }
 
-    private static void postSetUp2(String url, String data, Header header){
+    private static void postSetUp2(String url, String data, Header header) {
         HttpRequest request = getRequest2(url, data, header);
         putPostSetUp(request);
     }
 
-    private static void putSetUp(String url, String data){
+    private static void putSetUp(String url, String data) {
         HttpRequest request = getPutRequest(url, data);
         putPostSetUp(request);
     }
 
-    private static void putSetUp2(String url, String data, Header header){
+    private static void putSetUp2(String url, String data, Header header) {
         HttpRequest request = getPutRequest2(url, data, header);
         putPostSetUp(request);
     }
 
-    private static void putPostSetUp(HttpRequest request){
+    private static void putPostSetUp(HttpRequest request) {
         HttpClient client = getClient();
-        /*CompletableFuture<HttpResponse<String>> future =
-                client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-        future.thenApply(HttpResponse::body)
-                .thenAccept((d)->{
-                    onServerResponse.response(d);
-                });*/
         setResponseType(client, request);
     }
 
 
-
-    private static void getSetUp(String url){
+    private static void getSetUp(String url) {
         HttpClient client = getClient();
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -299,7 +302,7 @@ public class HttpFactory {
 
     }
 
-    private static void getSetUp(String url, Header header){
+    private static void getSetUp(String url, Header header) {
         HttpClient client = getClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
@@ -322,55 +325,64 @@ public class HttpFactory {
         }
     }
 
-    private static void sendGetString(HttpClient client, HttpRequest request){
+    private static void sendGetString(HttpClient client, HttpRequest request) {
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .thenAccept((d) -> {
 
-                    try{
+                    try {
                         switch (Response) {
                             case JSON -> onServerResponse.response(new JSONObject(d));
                             case TEXT -> onServerResponse.response(d);
                             case ARRAY -> onServerResponse.response(new JSONArray(d));
-                            case CLASS -> onServerResponse.response(new Gson().fromJson(d, typeClass));
+                            case CLASS -> {
+                                if (callback != null) {
+                                    Console.log("response", d);
+                                    callback.accept(new Gson().fromJson(d, typeClass));
+
+                                } else {
+                                    onServerResponse.response(new Gson().fromJson(d, typeClass));
+                                }
+                            }
                         }
-                    }catch (Exception exception){
+                    } catch (Exception exception) {
                         onServerResponse.error(d);
                     }
                 });
     }
 
-    private static void sendGetStream(HttpClient client, HttpRequest request){
 
-                try{
-                    client.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
-                            .thenApply(HttpResponse::body)
-                            .thenAccept(inputStream -> onServerResponse.response(inputStream));
-                    Response = HttpResponses.TEXT;
-                }catch (Exception e){
-                    onServerResponse.error(e.getMessage());
-                }
-    }
+    private static void sendGetStream(HttpClient client, HttpRequest request) {
 
-    private static void sendGetByteArray(HttpClient client, HttpRequest request){
-
-        try{
-            client.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray())
+        try {
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofInputStream())
                     .thenApply(HttpResponse::body)
-                    .thenAccept(bytearray -> onServerResponse.response(bytearray));
+                    .thenAccept(inputStream -> onServerResponse.response(inputStream));
             Response = HttpResponses.TEXT;
-        }catch (Exception e){
+        } catch (Exception e) {
             onServerResponse.error(e.getMessage());
         }
     }
 
-    private static void sendGetPath(HttpClient client, HttpRequest request){
-        try{
+    private static void sendGetByteArray(HttpClient client, HttpRequest request) {
+
+        try {
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray())
+                    .thenApply(HttpResponse::body)
+                    .thenAccept(bytearray -> onServerResponse.response(bytearray));
+            Response = HttpResponses.TEXT;
+        } catch (Exception e) {
+            onServerResponse.error(e.getMessage());
+        }
+    }
+
+    private static void sendGetPath(HttpClient client, HttpRequest request) {
+        try {
             client.sendAsync(request, HttpResponse.BodyHandlers.ofFile(RESPONSE_PATH))
                     .thenApply(HttpResponse::body)
                     .thenAccept(res -> onServerResponse.response(res));
             Response = HttpResponses.TEXT;
-        }catch (Exception e){
+        } catch (Exception e) {
             onServerResponse.error(e.getMessage());
         }
 
@@ -381,8 +393,8 @@ public class HttpFactory {
         Process process = runtime.exec("ping www.google.com");
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String read = null;
-        while((read = (reader.readLine())) != null){
-            if(read.contains("Received = 4"))return true;
+        while ((read = (reader.readLine())) != null) {
+            if (read.contains("Received = 4")) return true;
         }
         return false;
     }
@@ -390,26 +402,57 @@ public class HttpFactory {
     public static boolean isInternetConnectionAvailable(String url) throws IOException {
         Runtime runtime = Runtime.getRuntime();
         url = url.substring(url.indexOf("www"));
-        Process process = runtime.exec("ping "+url);
+        Process process = runtime.exec("ping " + url);
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         StringBuilder builder = new StringBuilder();
         String read = null;
-        while((read = (reader.readLine())) != null){
-            if(read.contains("Received = 4"))return true;
+        while ((read = (reader.readLine())) != null) {
+            if (read.contains("Received = 4")) return true;
         }
         return false;
     }
 
-    public abstract static class OnServerResponse<T>{
+    public abstract static class OnServerResponse<T> {
 
-        public void response(String data){};
-        public void response(JSONObject data) throws IOException {};
-        public void response(JSONArray data){};
-        public void response(Path data){};
-        public void response(InputStream data){};
-        public void response(byte [] data){};
-        public void response(T data){};
-        public void error(String error){};
+        public void response(String data) {
+        }
+
+        ;
+
+        public void response(JSONObject data) throws IOException {
+        }
+
+        ;
+
+        public void response(JSONArray data) {
+        }
+
+        ;
+
+        public void response(Path data) {
+        }
+
+        ;
+
+        public void response(InputStream data) {
+        }
+
+        ;
+
+        public void response(byte[] data) {
+        }
+
+        ;
+
+        public void response(T data) {
+        }
+
+        ;
+
+        public void error(String error) {
+        }
+
+        ;
     }
 
     private static OnServerResponse onServerResponse;
@@ -423,7 +466,7 @@ public class HttpFactory {
         Response = responseType;
     }
 
-    public static class Header{
+    public static class Header {
         private String key;
         private String value;
 
@@ -456,8 +499,7 @@ public class HttpFactory {
         JSON, TEXT, ARRAY, PATH, STREAM, BYTE_ARRAY, CLASS
     }
 
-
-    public static class Form{
+    public static class Form {
 
         private final String bound = "--";
         private final String lineFeed = "\r\n";
@@ -470,15 +512,17 @@ public class HttpFactory {
             openPart();
         }
 
-        public Form add(String name, Object value){
+        public Form add(String name, Object value) {
             continuePart(name, value);
             return this;
         }
-        public Form add(String name, JSONObject value){
+
+        public Form add(String name, JSONObject value) {
             continuePart(name, value.toString());
             return this;
         }
-        public Form add(String name, JSONArray value){
+
+        public Form add(String name, JSONArray value) {
             continuePart(name, value.toString());
             return this;
         }
@@ -503,23 +547,23 @@ public class HttpFactory {
         private ByteBuffer getBuffer(String path) throws IOException {
             FileInputStream fis = new FileInputStream(path);
             FileChannel fc = fis.getChannel();
-            ByteBuffer buf = ByteBuffer.allocate((int)fc.size());
+            ByteBuffer buf = ByteBuffer.allocate((int) fc.size());
             fc.read(buf);
             return buf;
         }
 
-        public Iterable<byte[]> build(){
+        public Iterable<byte[]> build() {
             closePart();
             return form;
         }
 
-        private void openPart(){
+        private void openPart() {
 
-            form.add((lineFeed+lineFeed).getBytes());
+            form.add((lineFeed + lineFeed).getBytes());
         }
 
 
-        private void continuePart(String name, Object value){
+        private void continuePart(String name, Object value) {
 
             String sb = bound +
                     boundary +
@@ -527,19 +571,19 @@ public class HttpFactory {
                     "Content-Disposition: form-data; name=\"" + name + "\"" +
                     lineFeed +
                     lineFeed +
-                    value+lineFeed;
+                    value + lineFeed;
 
             form.add(sb.getBytes());
-        } 
+        }
 
-        private void closePart(){
-            String s =bound +
+        private void closePart() {
+            String s = bound +
                     boundary +
                     bound;
             form.add(s.getBytes());
         }
-        
-        private void continuePart(String name, byte[] value, String fileName){
+
+        private void continuePart(String name, byte[] value, String fileName) {
 
             String sb = bound +
                     boundary +
@@ -548,16 +592,16 @@ public class HttpFactory {
                     lineFeed +
                     lineFeed;
 
-                   form.add(sb.getBytes());
-                   form.add(value);
-                   form.add(lineFeed.getBytes());
+            form.add(sb.getBytes());
+            form.add(value);
+            form.add(lineFeed.getBytes());
         }
 
     }
 
-    public static class UrlBuilder{
+    public static class UrlBuilder {
 
-       private final StringBuilder url;
+        private final StringBuilder url;
 
         public UrlBuilder() {
             this.url = new StringBuilder();
@@ -567,7 +611,8 @@ public class HttpFactory {
             this.url = new StringBuilder(url);
             this.url.append("?");
         }
-        public UrlBuilder append(String key, String value){
+
+        public UrlBuilder append(String key, String value) {
             url.append(key);
             url.append("=");
             url.append(value);
@@ -575,12 +620,12 @@ public class HttpFactory {
             return this;
         }
 
-        public UrlBuilder append(String key, int value){
+        public UrlBuilder append(String key, int value) {
             return append(key, String.valueOf(value));
         }
 
-        public String build(){
-            return url.deleteCharAt(url.length()-1).toString();
+        public String build() {
+            return url.deleteCharAt(url.length() - 1).toString();
         }
     }
 

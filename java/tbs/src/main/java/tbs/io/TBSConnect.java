@@ -1,7 +1,9 @@
 package tbs.io;
 
 import interfaces.OnTbsMiniError;
+import tbs.models.Drive;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,7 +15,10 @@ public class TBSConnect {
     private String serverApp = "dbsrv17";
     private final TbsMini tbsMini;
 
-    public TBSConnect() {
+    public TBSConnect(Drive drive) throws IOException {
+        tbsMini = new TbsMini(drive);
+    }
+    public TBSConnect() throws IOException {
         tbsMini = new TbsMini();
     }
 

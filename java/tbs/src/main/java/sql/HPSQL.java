@@ -430,8 +430,9 @@ public class HPSQL {
 
         Map<String, Object> map = jsonObject.toMap();
         JSONObject newJSON = new JSONObject();
+        List<String> lists = Arrays.asList(keys);
         map.forEach((key, value) -> {
-            if(!Arrays.asList(keys).contains(key)){
+            if(!lists.contains(key)){
                 newJSON.put(key, value);
             }
         });

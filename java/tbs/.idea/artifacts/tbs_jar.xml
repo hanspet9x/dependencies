@@ -4,7 +4,7 @@
     <root id="archive" name="tbs.jar">
       <element id="module-output" name="tbs" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../3rdparty/sajdbc4.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../hpapi/out/artifacts/hpapi2_jar/hpapi.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../hpapi/out/artifacts/hpapi_jar/hpapi.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
